@@ -12,6 +12,10 @@ LOG_CONF = {
                       "Tname:%(threadName)s) %(levelname)s %(message)s",
             # 'datefmt': "%Y-%m-%d %H:%M:%S"
         },
+        'verbose1': {
+            'format': "%(asctime)s %(streamer)s %(filename)s[line:%(lineno)d](Pid:%(process)d "
+                      "Tname:%(threadName)s) %(levelname)s %(message)s",
+        },
         'simple': {
             'format': '%(asctime)s %(filename)s%(lineno)d[%(levelname)s]Tname:%(threadName)s %(message)s'
         },
@@ -32,6 +36,16 @@ LOG_CONF = {
             'filename': 'ds_update.log',
             'formatter': 'verbose',
             'encoding': 'utf-8'
+        },
+        'file1': {
+            'level': logging.DEBUG,
+            'class': 'biliup.common.log.SafeRotatingFileHandler',
+            'when': 'W0',
+            'interval': 1,
+            'backupCount': 1,
+            'filename': 'ds_update.log',
+            'formatter': 'verbose1',
+            'encoding': 'utf-8'
         }
     },
     'root': {
@@ -41,6 +55,10 @@ LOG_CONF = {
     'loggers': {
         'biliup': {
             'handlers': ['file'],
+            'level': logging.INFO,
+        },
+        'biliup1': {
+            'handlers': ['file1'],
             'level': logging.INFO,
         },
     }

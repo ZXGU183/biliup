@@ -15,6 +15,7 @@ from urllib.parse import urlparse
 from datetime import datetime, timezone
 
 import requests
+from aiohttp import streamer
 from requests.utils import DEFAULT_ACCEPT_ENCODING
 from httpx import HTTPStatusError
 
@@ -32,6 +33,7 @@ from biliup.uploader import fmt_title_and_desc
 from .sync_downloader import SyncDownloader
 from biliup.app import context
 logger = logging.getLogger('biliup')
+logger1 = logging.getLogger('biliup1')
 
 
 class DownloadBase(ABC):
@@ -197,7 +199,7 @@ class DownloadBase(ABC):
                     ffmpeg_file_name = line.rstrip().decode(errors='ignore')
                     time.sleep(1)
                     # 文件重命名
-                    self.download_file_rename(ffmpeg_file_name, f'{file_name}.{self.suffix}')
+                    self.download_file_rename(ffmpeg_file_name, f'{file_name}.{self.suffix}', self.fname)
                     self.__download_segment_callback(f'{file_name}.{self.suffix}')
                     file_name = self.gen_download_filename(is_fmt=True)
                 except:
@@ -277,7 +279,7 @@ class DownloadBase(ABC):
 
             if proc.returncode == 0:
                 # 文件重命名
-                self.download_file_rename(f'{fmt_file_name}.{self.suffix}.part', f'{fmt_file_name}.{self.suffix}')
+                self.download_file_rename(f'{fmt_file_name}.{self.suffix}.part', f'{fmt_file_name}.{self.suffix}', self.fname)
                 # 触发分段事件
                 self.__download_segment_callback(f'{fmt_file_name}.{self.suffix}')
                 return True
@@ -314,7 +316,7 @@ class DownloadBase(ABC):
                     data = os.path.abspath(file_name)
                     if os.path.exists(danmaku_file_name):
                         data += f'\n{os.path.abspath(danmaku_file_name)}'
-                    processor(self.segment_processor, data)
+                    processor(self.segment_processor, data, self.fname)
                 except:
                     logger.warning(f'{self.plugin_msg}: 执行后处理失败', exc_info=True)
 
@@ -343,7 +345,7 @@ class DownloadBase(ABC):
                 self.danmaku = None
 
     def start(self):
-        logger.info(f"{self.plugin_msg}: 开始下载")
+        logger1.info(f"{self.plugin_msg}: 开始下载", extra={'streamer': self.fname})
         # 开始时间
         start_time = time.localtime()
         # 结束时间
@@ -385,7 +387,7 @@ class DownloadBase(ABC):
         if (self.is_download and ret) or not self.is_download:
             self.download_success_callback()
         # self.segment_processor_thread
-        logger.info(f'{self.plugin_msg}: 退出下载')
+        logger1.info(f'{self.plugin_msg}: 退出下载', extra={'streamer': self.fname})
 
         if str(self.database_row_id) in context["sync_downloader_map"]:
             context["sync_downloader_map"].pop(str(self.database_row_id))
@@ -500,10 +502,10 @@ class DownloadBase(ABC):
             return filename
 
     @staticmethod
-    def download_file_rename(old_file_name, file_name):
+    def download_file_rename(old_file_name, file_name, streamer):
         try:
             os.rename(old_file_name, file_name)
-            logger.info(f'更名 {old_file_name} 为 {file_name}')
+            logger1.info(f'更名 {old_file_name} 为 {file_name}', extra={'streamer': streamer})
         except:
             logger.error(f'更名 {old_file_name} 为 {file_name} 失败', exc_info=True)
 

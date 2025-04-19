@@ -55,9 +55,9 @@ def arg_parser():
                     config.save_to_db(db)
             config.load_from_db(db)
         # db.remove()
-        LOG_CONF.update(config.get('LOGGING', {}))
         if args.verbose:
             LOG_CONF['loggers']['biliup']['level'] = args.verbose
+            LOG_CONF['loggers']['biliup1']['level'] = args.verbose
             LOG_CONF['root']['level'] = args.verbose
         logging.config.dictConfig(LOG_CONF)
         logging.getLogger('httpx').addFilter(DebugLevelFilter())

@@ -3,9 +3,9 @@ requires = ['pip>=24.2', 'setuptools>=74', 'wheel']
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "biliup"
-authors = [{ name = "ForgQi" }]
-description = "stream download and upload"
+name = "biliup-ruinmi"
+authors = [{ name = "ruinmi" }]
+description = "stream download and upload made by ForgQi, ruinmi modified"
 keywords = ["bilibili douyu huya"]
 urls = { Homepage = "https://github.com/ForgQi/bilibiliupload" }
 requires-python = ">= 3.9"

@@ -92,7 +92,10 @@ class Douyin:
         wss_package = PushFrame()
         wss_package.ParseFromString(data)
         log_id = wss_package.logId
-        decompressed = gzip.decompress(wss_package.payload)
+        if wss_package.payload[:2] == b'\x1f\x8b':
+            decompressed = gzip.decompress(wss_package.payload)
+        else:
+            decompressed = wss_package.payload
         payload_package = Response()
         payload_package.ParseFromString(decompressed)
 

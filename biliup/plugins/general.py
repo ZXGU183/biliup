@@ -76,7 +76,7 @@ class SDownload(DownloadBase):
                             return 1
                     return 0
         except OSError:
-            self.download_file_rename(filename + '.part', filename)
+            self.download_file_rename(filename + '.part', filename, self.fname)
             raise
 
 

@@ -289,7 +289,6 @@ class DanmakuClient(IDanmakuClient):
         init_event = threading.Event()
 
         async def __init():
-            logger.info(f'开始弹幕录制: {self.__url}')
             self.__record_task = asyncio.create_task(self.__run())
             init_event.set()
             try:
@@ -297,7 +296,6 @@ class DanmakuClient(IDanmakuClient):
             except asyncio.CancelledError:
                 pass
             self.__record_task = None
-            logger.info(f'结束弹幕录制: {self.__url}')
 
         threading.Thread(target=asyncio.run, args=(__init(),)).start()
         # 等待初始化完成避免未初始化完成的时候就停止任务
@@ -335,10 +333,10 @@ class DanmakuClient(IDanmakuClient):
                     await asyncio.gather(*danmaku_tasks)
                 except asyncio.CancelledError:
                     raise
-                # except self.WebsocketErrorException:
-                #     # 连接断开等30秒重连
-                #     # 在关闭之前一直重试
-                #     logger.warning(f"{DanmakuClient.__name__}:{self.__url}: 弹幕连接异常,将在 30 秒后重试")
+                except self.WebsocketErrorException:
+                    # 连接断开等30秒重连
+                    # 在关闭之前一直重试
+                    logger.warning(f"{DanmakuClient.__name__}:{self.__url}: 弹幕连接异常,将在 30 秒后重试")
                 except:
                     # 记录异常不到外部处理
                     logger.exception(f"{DanmakuClient.__name__}:{self.__url}: 弹幕异常,将在 30 秒后重试", exc_info=True)

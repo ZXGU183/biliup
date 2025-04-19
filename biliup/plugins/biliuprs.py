@@ -5,7 +5,7 @@ from typing import List
 import stream_gears
 
 from ..engine import Plugin
-from ..engine.upload import UploadBase, logger
+from ..engine.upload import UploadBase, logger, logger1
 
 
 @Plugin.upload(platform="biliup-rs")
@@ -89,7 +89,7 @@ class BiliWeb(UploadBase):
         if ex_parent_conn.poll():
             raise RuntimeError(ex_parent_conn.recv())
 
-        logger.info(f"上传成功: {self.principal}")
+        logger1.info(f"上传成功: {self.principal}", extra={'streamer': self.principal})
         return file_list
 
     def creditsToDesc_v2(self):

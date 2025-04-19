@@ -13,6 +13,7 @@ from biliup.database import models
 from biliup.database.db import SessionLocal
 
 logger = logging.getLogger('biliup')
+logger1 = logging.getLogger('biliup1')
 
 
 class UploadBase:
@@ -76,7 +77,7 @@ class UploadBase:
             threshold = config.get('filtering_threshold', 0)
             if file_size <= threshold:
                 os.remove(file)
-                logger.info(f'过滤删除 - {file}')
+                logger1.info(f'过滤删除 - {file}', extra={'streamer': index})
                 continue
 
             video = file
@@ -101,21 +102,21 @@ class UploadBase:
                         break
                 if not have_video:
                     logger.info(f'无视频，过滤删除 - {file}')
-                    UploadBase.remove_file(file)
+                    UploadBase.remove_file(file, index)
         return results
 
     @staticmethod
-    def remove_filelist(file_list: List[FileInfo]):
+    def remove_filelist(file_list: List[FileInfo], steamer: str):
         for f in file_list:
-            UploadBase.remove_file(f.video)
+            UploadBase.remove_file(f.video, steamer)
             if f.danmaku is not None:
-                UploadBase.remove_file(f.danmaku)
+                UploadBase.remove_file(f.danmaku, steamer)
 
     @staticmethod
-    def remove_file(file: str):
+    def remove_file(file: str, streamer: str):
         try:
             os.remove(file)
-            logger.info(f'删除 - {file}')
+            logger1.info(f'删除 - {file}', extra={'streamer': streamer})
         except:
             logger.warning(f'删除失败 - {file}')
 
@@ -134,7 +135,7 @@ class UploadBase:
             if len(file_list) > 0:
                 upload_filename_list = [os.path.splitext(file.video)[0] for file in file_list]
 
-                logger.info('准备上传' + self.data["format_title"])
+                logger1.info('准备上传' + self.data["format_title"], extra={'streamer': self.principal})
                 with NamedLock('upload_filename'):
                     event_manager.context['upload_filename'].extend(upload_filename_list)
                 lock.release()

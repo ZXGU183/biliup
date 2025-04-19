@@ -5,6 +5,9 @@ import random
 import time
 import html
 from urllib.parse import parse_qs, unquote
+
+import httpcore
+import httpx
 from async_lru import alru_cache
 from typing import (
     Any,
@@ -49,6 +52,8 @@ class Huya(DownloadBase):
                 logger.debug(f"{self.plugin_msg}: {_get_real_rid.cache_info()}")
             self.fake_headers['referer'] = self.url
             room_profile = await self.get_room_profile(self.huya_mobile_api)
+        except (httpx.TimeoutException, httpcore.TimeoutException, httpcore.RemoteProtocolError, httpx.RemoteProtocolError):
+            return False
         except Exception as e:
             logger.error(f"{self.plugin_msg}: {e}", exc_info=True)
             return False
