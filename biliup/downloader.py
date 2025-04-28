@@ -36,7 +36,6 @@ def download(fname, url, **kwargs):
         del override
     return pg.start()
 
-
 def biliup_download(name, url, kwargs: dict):
     kwargs.pop('url')
     suffix = kwargs.get('format')

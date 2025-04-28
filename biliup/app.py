@@ -10,6 +10,7 @@ from .common.timer import Timer
 from .common.tools import NamedLock
 
 logger = logging.getLogger('biliup')
+logger1 = logging.getLogger('biliup1')
 
 
 def create_event_manager():
@@ -28,6 +29,9 @@ def create_event_manager():
 
     # 边录边传的下载器使用的map
     app.context['sync_downloader_map'] = {}
+    
+    # 记录正在下载的进程
+    app.context['downloading_pid'] = {}
     return app
 
 
@@ -37,19 +41,46 @@ context = event_manager.context
 
 async def singleton_check(platform, name, url):
     from biliup.handler import PRE_DOWNLOAD, UPLOAD
+    from biliup.config import config
     context['url_upload_count'].setdefault(url, 0)
-    if context['PluginInfo'].url_status[url] == 1:
-        logger.debug(f'{url} 正在下载中，跳过检测')
-        return
-
-    event_manager.send_event(Event(UPLOAD, ({'name': name, 'url': url},)))
+    
     p = platform(name, url)
-    if await p.acheck_stream(True) and p.should_record():
-        # 需要等待上传文件列表检索完成后才可以开始下次下载
-        with NamedLock(f'upload_file_list_{name}'):
-            event_manager.send_event(Event(PRE_DOWNLOAD, args=(name, url,)))
+    is_live = await p.acheck_stream(True)
+    should_record = p.should_record()
+    
+    if context['PluginInfo'].url_status[url] != 1:
+        event_manager.send_event(Event(UPLOAD, ({'name': name, 'url': url},)))
+        if is_live and should_record:
+            # 需要等待上传文件列表检索完成后才可以开始下次下载
+            with NamedLock(f'upload_file_list_{name}'):
+                event_manager.send_event(Event(PRE_DOWNLOAD, args=(name, url,)))
+    elif not should_record:
+        # Check if there is an ongoing download and stop it
+        stop_download(name, url)
 
+def stop_download(name, url):
+    url_status = context['PluginInfo'].url_status
 
+    # Try to safely stop any download associated with the URL
+    if url_status[url] == 1:
+        logger1.info(f"尝试停止下载 {name} - {url}", extra={'steamer': name})
+
+        # Check if there's an ongoing download in the map
+        download_proc = context["downloading_pid"].pop(name)
+        if download_proc:
+            try:
+                # Check if the process is still running before attempting to terminate
+                if download_proc.poll() is None:
+                    download_proc.terminate()  # Send termination signal to the FFmpeg process
+                    download_proc.wait(timeout=10)  # Wait for the process to terminate
+                else:
+                    logger.info(f"FFmpeg process for {name} - {url} has already terminated.")
+            except Exception as e:
+                logger.error(f"Error while stopping the download: {e}")
+        else:
+            logger.error(f"No active download process found for {name} - {url}")
+
+                
 async def shot(event):
     index = 0
     while True:
