@@ -27,9 +27,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const { Sider } = SeLayout
   const pathname = usePathname()
   let initOpenKeys: any = []
-  if (pathname.slice(1) === 'streamers' || pathname.slice(1) === 'history') {
-    initOpenKeys = ['manager']
-  }
 
   const [openKeys, setOpenKeys] = useState(initOpenKeys)
   const [selectedKeys, setSelectedKeys] = useState<any>([pathname.slice(1)])
@@ -49,13 +46,17 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       setIsCollapsed(true)
     }
   }, [width]);
-
+  
+  useEffect(() => {
+    setSelectedKeys([pathname.slice(1)]); // 更新选中的菜单项
+  }, [pathname]);
+    
   const items = useMemo(
     () =>
       [
         {
-          itemKey: 'home',
-          text: '主页',
+          itemKey: 'streamers',
+          text: '直播管理',
           icon: (
             <div
               style={{
@@ -63,33 +64,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                 borderRadius: 'var(--semi-border-radius-medium)',
                 color: 'var(--semi-color-bg-0)',
                 display: 'flex',
-                // justifyContent: 'center',
                 padding: '4px',
               }}
             >
               <IconHome size="small" />
-            </div>
-          ),
-        },
-        {
-          itemKey: 'manager',
-          text: '录播管理',
-          items: [
-            { itemKey: 'streamers', text: '直播管理' },
-            { itemKey: 'history', text: '历史记录' },
-          ],
-          icon: (
-            <div
-              style={{
-                backgroundColor: '#5ac262ff',
-                borderRadius: 'var(--semi-border-radius-medium)',
-                color: 'var(--semi-color-bg-0)',
-                display: 'flex',
-                // justifyContent: 'center',
-                padding: '4px',
-              }}
-            >
-              <IconVideoListStroked size="small" />
             </div>
           ),
         },
@@ -128,23 +106,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           ),
         },
         {
-          itemKey: 'job',
-          text: '直播历史',
-          icon: (
-            <div
-              style={{
-                backgroundColor: 'rgb(250 102 76)',
-                borderRadius: 'var(--semi-border-radius-medium)',
-                color: 'var(--semi-color-bg-0)',
-                display: 'flex',
-                padding: '4px',
-              }}
-            >
-              <IconHistory size="small" />
-            </div>
-          ),
-        },
-        {
           text: '实时日志',
           icon: (
             <div
@@ -162,22 +123,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           itemKey: 'logViewer',
         },
         {
-          text: '任务平台',
+          itemKey: 'history',
+          text: '历史记录',
           icon: (
             <div
               style={{
-                backgroundColor: 'rgba(var(--semi-lime-2), 1)',
+                backgroundColor: '#5ac262ff',
                 borderRadius: 'var(--semi-border-radius-medium)',
                 color: 'var(--semi-color-bg-0)',
                 display: 'flex',
                 padding: '4px',
               }}
             >
-              <IconSetting size="small" />
+              <IconVideoListStroked size="small" />
             </div>
           ),
-          itemKey: 'status',
-          // items: [{itemKey: 'About', text: '任务管理'}, {itemKey: 'Dashboard', text: '用户任务查询'}],
         },
       ].map((value: any) => {
         value.text = (
@@ -203,7 +163,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   )
   const renderWrapper = useCallback(({ itemElement, isSubNav, isInSubNav, props }: any) => {
     const routerMap: Record<string, string> = {
-      home: '/',
       history: '/history',
       dashboard: '/dashboard',
       streamers: '/streamers',
