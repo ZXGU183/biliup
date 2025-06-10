@@ -13,66 +13,59 @@
 [![GitHub Issues](https://img.shields.io/github/issues/biliup/biliup?label=Issues)](https://github.com/biliup/biliup/issues)
 [![GitHub Stars](https://img.shields.io/github/stars/biliup/biliup)](https://github.com/biliup/biliup/stargazers)
 [![GitHub Forks](https://img.shields.io/github/forks/biliup/biliup)](https://github.com/biliup/biliup/network)
-
 </div>
 
 
+# 📜[分叉笔记 »](https://github.com/ZXGU183/biliup/wiki)
 
-## 🛠️ 功能
-* 开箱即用，多种安装方式，提供可视化WebUi界面
-* 多主播录制/上传，24X7无人值守运行，高自定义元信息
-* 边录边传不落盘急速上传，节省本地硬盘空间
+- [原项目](https://github.com/biliup/biliup)
 
+- [官方文档](https://docs.biliup.me)
 
+## 🚀 开始使用
 
-## 📜 更新日志
-
-- **[更新日志 »](https://biliup.github.io/biliup/docs/guide/changelog)**
-
-
-
-
-## 📜 使用文档
-
-- [使用文档 »](https://docs.biliup.me)
-
-## 🚀 快速开始
+- [安装](https://zhuanlan.zhihu.com/p/662421567)  [**FFmpeg**](https://ffmpeg.org/) ，**推荐**[最新正式版（即 nX.X ）的 gpl-shared 版本](https://github.com/BtbN/FFmpeg-Builds/releases)
+- `git clone https://github.com/ZXGU183/biliup`
 
 ### Windows
-- 下载 exe: [Release](https://github.com/biliup/biliup/releases/latest)
+1. 确保 Python 版本 ≥ 3.9， Node.js 版本 ≥ 18
+2. 安装后端依赖 `pip install .`
+3. 安装前端依赖 `npm i`
+4. 构建前端静态资源 `npm run build`
+5. 启动 `BiliUPstart.bat` 或 `python -m biliup`
+6. 访问 WebUI：`http://你的网络或本地IP:19159`
 
 ### Linux 或 macOS
-1. 确保 Python 版本 ≥ 3.9
-2. 安装：`pip3 install biliup`
-3. 启动：`biliup start`
-4. 访问 WebUI：`http://your-ip:19159`
+1. 存在 Python 版本 ≥ 3.9， Node.js 版本 ≥ 18
+2. 安装后端依赖 `pip3 install .`
+3. 安装前端依赖 `npm i`
+4. 构建前端静态资源 `npm run build`
+5. 启动：`python3 -m biliup`
+6. 访问 WebUI：`http://你的网络或本地IP:19159`
 
+## 🛠️ 后续更新
+1. 移走保存在程序目录下的录播
+2. **备份** `/biliup/data/` 以及自定义预设等文件
+3. `git pull`
+4. 再次执行安装构建步骤
+5. 若无特殊情况，根据需要还原之前备份的文件即可
 
 ---
 
 ## 🧑‍💻开发
 
-### frontend
+### 前端
 
-1. 确保 Node.js 版本 ≥ 18
-2. 安装依赖：`npm i`
-3. 启动开发服务器：`npm run dev`
-4. 访问：`http://localhost:3000`
+1. 启动开发服务器：`npm run dev`
+2. 访问：`http://localhost:3000`
 
-### backend
+### 后端
 
-1. 安装依赖 `pip install .`
-2. `npm run build` 确保 `/biliup/web/public` 目录存在构建好的前端静态资源
-3. 启动 Biliup：`python3 -m biliup`
+确保 `/biliup/web/public` 目录存在构建好的前端静态资源
 
-## 🤝Credits
-* Thanks `ykdl, youtube-dl, streamlink` provides downloader.
-* Thanks `THMonster/danmaku`.
-
-
-## 💴捐赠
-[爱发电 »](https://afdian.com/a/biliup)
-
+## 🤝其他💴
+* 同原项目，请参照
+* 感谢所有上游贡献者
 
 ## ⭐Stars
 [![Star History Chart](https://api.star-history.com/svg?repos=biliup/biliup&type=Date)](https://star-history.com/#biliup/biliup&Date)
