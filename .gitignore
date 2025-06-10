@@ -25,7 +25,6 @@ ds_update.log*
 *.egg-info
 dist/
 build/
-cover/
 cache/
 
 *.back
@@ -40,7 +39,6 @@ qrcode.png
 *.log
 /*.ts
 /biliup/stream-gears/
-data/
 .next
 out
 downloads/
