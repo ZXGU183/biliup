@@ -24,8 +24,9 @@
 
 ## 🚀 开始使用
 
+- 仔细阅读 [Wiki](https://github.com/ZXGU183/biliup/wiki) 和[读我文件](https://github.com/ZXGU183/biliup/blob/master/README.md)，**尤其是对后续更新的提示**
 - [安装](https://zhuanlan.zhihu.com/p/662421567)  [**FFmpeg**](https://ffmpeg.org/) ，**推荐**[最新正式版（即 nX.X ）的 gpl-shared 版本](https://github.com/BtbN/FFmpeg-Builds/releases)
-- `git clone https://github.com/ZXGU183/biliup`
+- `git clone https://github.com/ZXGU183/biliup && cd biliup`
 
 ### Windows
 1. 确保 Python 版本 ≥ 3.9， Node.js 版本 ≥ 18
