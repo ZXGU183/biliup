@@ -1,5 +1,5 @@
 @echo off
-cd /d %~dp0
+cd /d "%~dp0"
 setlocal enabledelayedexpansion
 
 :: 目标目录（请确保路径正确）
@@ -35,16 +35,16 @@ for %%F in (*.mp4 *.flv) do (
 )
 
 :: 移动日期文件夹到目标目录
-echo.
+@REM echo.
 @REM echo 正在移动文件夹 "%datefolder%" 到目标目录...
-@REM if not exist "%target_dir%\" (
-@REM     echo 创建目标目录: "%target_dir%"
-@REM     mkdir "%target_dir%"
+@REM if not exist "%target_dir%\%datefolder%" (
+@REM     echo 创建目标目录: "%target_dir%\%datefolder%"
+@REM     mkdir "%target_dir%\%datefolder%"
 @REM )
 @REM 
-@REM move /Y "%datefolder%" "%target_dir%\" >nul
+@REM move /Y "%datefolder%\*" "%target_dir%\%datefolder%" >nul
 @REM if %errorlevel% equ 0 (
-@REM     echo 成功移动文件夹到 "%target_dir%\%datefolder%"
+@REM     rd /s /q %datefolder% && echo 成功移动文件夹到 "%target_dir%\%datefolder%"
 @REM ) else (
 @REM     echo 移动文件夹失败！请检查目标路径和权限。
 @REM )
