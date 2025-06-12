@@ -22,7 +22,9 @@
 
 - [官方文档](https://docs.biliup.me)
 
-## 🚀 开始使用
+## 🍱 [下载即食](https://github.com/ZXGU183/biliup/releases)（Windows x64）
+
+## 🚀 从构建使用
 
 - 仔细阅读 [Wiki](https://github.com/ZXGU183/biliup/wiki) 和[读我文件](https://github.com/ZXGU183/biliup/blob/master/README.md)，**尤其是对后续更新的提示**
 - [安装](https://zhuanlan.zhihu.com/p/662421567)  [**FFmpeg**](https://ffmpeg.org/) ，**推荐**[最新正式版（即 nX.X ）的 gpl-shared 版本](https://github.com/BtbN/FFmpeg-Builds/releases)

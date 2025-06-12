@@ -49,7 +49,23 @@ for %%F in (*.mp4 *.flv) do (
 @REM     echo 移动文件夹失败！请检查目标路径和权限。
 @REM )
 
+:: 移动原始 .flv 文件到上级目录
+echo.
+echo 正在将原始 .flv 文件移动到上级目录 (%~dp0..\)...
+if exist "*.flv" (
+    move "*.flv" "%~dp0..\" >nul 2>&1
+    if %errorlevel% equ 0 (
+        echo 已将原始 .flv 文件移动到上级目录: "%~dp0..\"
+    ) else (
+        echo 移动原始 .flv 文件到上级目录失败！错误代码: %errorlevel%
+        echo 请检查目标上级目录是否存在以及是否有写入权限。
+    )
+) else (
+    echo 当前目录没有找到原始 .flv 文件可移动到上级目录。
+)
+
 echo.
 echo 所有操作已完成！结果保存在 "%target_dir%\%datefolder%\" 文件夹中
+if exist "%~dp0..\*.flv" ( echo 原始 .flv 文件已移动到 "%~dp0..\" )
 endlocal
 exit
