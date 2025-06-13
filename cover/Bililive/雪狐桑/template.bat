@@ -32,6 +32,12 @@ echo 正在转换视频文件...
 for %%F in (*.mp4 *.flv) do (
     echo 正在处理: "%%F"
     ffmpeg -i "%%F" -c copy -movflags +faststart -fps_mode vfr "%datefolder%\%%~nF.mov"
+::NVIDIA
+@REM    ffmpeg -i "%%F" -map 0:v -map 0:a -c:v hevc_nvenc -preset fast -profile:v main -tier main -rc vbr -cq:v 28 -b:v 0 -vf "mpdecimate=hi=64*30:lo=64*10:frac=0.33" -c:a copy -movflags +faststart -fps_mode vfr "%datefolder%\%%~nF.mov"
+@REM    ffmpeg -i "%%F" -map 0:v -map 0:a -c:v hevc_nvenc -preset fast -profile:v main -tier main -rc vbr -cq:v 28 -b:v 0 -maxrate 6000k -bufsize 12000k -vf "mpdecimate=hi=64*30:lo=64*10:frac=0.33" -spatial-aq 1 -temporal-aq 1 -init_qpP 26 -init_qpB 28 -init_qpI 24 -c:a copy -movflags +faststart -fps_mode vfr "%datefolder%\%%~nF.mov"
+::Intel gen8+（QSV）
+@REM    ffmpeg -i "%%F" -map 0:v -map 0:a -c:v hevc_qsv -preset fast -profile:v main -rc vbr -global_quality 28 -b:v 0 -vf "mpdecimate=hi=64*30:lo=64*10:frac=0.33" -c:a copy -movflags +faststart -fps_mode vfr "%datefolder%\%%~nF.mov"
+@REM    ffmpeg -i "%%F" -map 0:v -map 0:a -c:v hevc_qsv -preset fast -profile:v main -rc vbr -global_quality 28 -b:v 0 -maxrate 6000k -bufsize 12000k -vf "mpdecimate=hi=64*30:lo=64*10:frac=0.33" -extbrc 1 -b_strategy 1 -adaptive_i 1 -adaptive_b 1 -c:a copy -movflags +faststart -fps_mode vfr "%datefolder%\%%~nF.mov"
 )
 
 :: 移动日期文件夹到目标目录

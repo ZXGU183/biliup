@@ -16,13 +16,13 @@
 </div>
 
 
-# 📜[分叉笔记 »](https://github.com/ZXGU183/biliup/wiki)
+# 📜[» 分叉笔记 ](https://github.com/ZXGU183/biliup/wiki)
 
 - [原项目](https://github.com/biliup/biliup)
 
 - [官方文档](https://docs.biliup.me)
 
-## 🍱 [下载即食](https://github.com/ZXGU183/biliup/releases)（Windows x64）
+## 🍱 [下载即食 «](https://github.com/ZXGU183/biliup/releases)
 
 ## 🚀 从构建使用
 
