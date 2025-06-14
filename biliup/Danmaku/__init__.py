@@ -246,7 +246,7 @@ class DanmakuClient(IDanmakuClient):
                                 # 异常后略过本次弹幕
                                 continue
                         # 礼物信息记录，目前仅在B站、抖音开启
-                        elif self.__u in ['live.bilibili.com', 'live.douyin.com'] and msg_type in ['gift', 'super_chat' , 'guard_buy']:
+                        elif self.__u in ['live.bilibili.com', 'douyin.com'] and msg_type in ['gift', 'super_chat' , 'guard_buy']:
                             if not self.__content.get("detail", False):
                                 continue
                             try:
@@ -259,7 +259,7 @@ class DanmakuClient(IDanmakuClient):
                                 # 礼物名称
                                 s.set('num', str(m.get('num', "")))
                                 s.set('giftname', m.get('gift_name', ""))
-                                s.text = m["content"]
+                                s.text = m.get("content", "")
                             except:
                                 logger.warning(f"{DanmakuClient.__name__}:{self.__url}:弹幕处理异常", exc_info=True)
                                 # 异常后略过本次弹幕
