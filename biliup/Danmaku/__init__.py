@@ -172,6 +172,7 @@ class DanmakuClient(IDanmakuClient):
 
                     msg_type = m.get("msg_type")
                     msg_time = time.time()
+                    msg_time_since_start = format(msg_time - start_time, '.3f')
                     logger.debug(f"{DanmakuClient.__name__}:{self.__url}: 弹幕queue-{msg_type}")
                     # print(m)
                     # 非弹幕
@@ -218,7 +219,6 @@ class DanmakuClient(IDanmakuClient):
                                     color = m["color"]
                                 else:
                                     color = '16777215'
-                                msg_time_since_start = format(msg_time - start_time, '.3f')
                                 # 记录弹幕额外信息
                                 timestamp = str(int(msg_time))
                                 uid = str(m.get("uid",0))
@@ -251,9 +251,10 @@ class DanmakuClient(IDanmakuClient):
                                 continue
                             try:
                                 s = etree.SubElement(root, 's')
+                                s.set('since_start', msg_time_since_start)
                                 s.set('timestamp', str(int(msg_time)))
                                 s.set('uid', str(m.get("uid", "")))
-                                s.set('username', m.get("name", ""))
+                                s.set('user', m.get("name", ""))
                                 s.set('price', str(m.get("price", "")))
                                 s.set('type', msg_type)
                                 # 礼物名称
