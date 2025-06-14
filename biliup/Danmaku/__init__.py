@@ -245,20 +245,20 @@ class DanmakuClient(IDanmakuClient):
                                 logger.warning(f"{DanmakuClient.__name__}:{self.__url}:弹幕处理异常", exc_info=True)
                                 # 异常后略过本次弹幕
                                 continue
-                        # 礼物信息记录，支持上舰、SC、礼物，目前仅在B站开启
-                        elif self.__u == 'live.bilibili.com' and msg_type in ['gift', 'super_chat' , 'guard_buy']:
+                        # 礼物信息记录，目前仅在B站、抖音开启
+                        elif self.__u in ['live.bilibili.com', 'live.douyin.com'] and msg_type in ['gift', 'super_chat' , 'guard_buy']:
                             if not self.__content.get("detail", False):
                                 continue
                             try:
                                 s = etree.SubElement(root, 's')
                                 s.set('timestamp', str(int(msg_time)))
-                                s.set('uid', str(m.get("uid")))
-                                s.set('username', m.get("name",""))
-                                s.set('price', str(m.get("price")))
+                                s.set('uid', str(m.get("uid", "")))
+                                s.set('username', m.get("name", ""))
+                                s.set('price', str(m.get("price", "")))
                                 s.set('type', msg_type)
                                 # 礼物名称
-                                s.set('num', str(m.get('num')))
-                                s.set('giftname', m.get('gift_name'))
+                                s.set('num', str(m.get('num', "")))
+                                s.set('giftname', m.get('gift_name', ""))
                                 s.text = m["content"]
                             except:
                                 logger.warning(f"{DanmakuClient.__name__}:{self.__url}:弹幕处理异常", exc_info=True)
