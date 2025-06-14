@@ -110,8 +110,9 @@ class Douyin:
             payload = msg.payload
             
             if method == 'WebcastChatMessage':
-                chat_message = ChatMessage().ParseFromString(msg.payload)
-                data = json_format.MessageToDict(chat_message, preserving_proto_field_name=True)
+                message = ChatMessage()
+                message.ParseFromString(payload)
+                data = json_format.MessageToDict(message, preserving_proto_field_name=True)
                 name = data['user']['nickName']
                 uid = data['user']['id']
                 content = data['content']
@@ -120,7 +121,8 @@ class Douyin:
                 msg_dict = {"name": name, "uid": uid, "content": content, "msg_type": "danmaku"}
                 msgs.append(msg_dict)
             elif method == 'WebcastGiftMessage':
-                message = GiftMessage().ParseFromString(payload)
+                message = GiftMessage()
+                message.ParseFromString(payload)
                 data = json_format.MessageToDict(message, preserving_proto_field_name=True)
                 name = data['user']['nickName']
                 uid = data['user']['id']
