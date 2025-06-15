@@ -1,8 +1,15 @@
 import logging
 import platform
 import sys
+import os
 
-__version__ = "0.4.100"
+# Set console color to Light Purple background (D) and Bright White foreground (F) on Windows
+if sys.platform == "win32":
+    # This is equivalent to executing "color DF" in CMD
+    os.system('color DF')
+    os.system('echo 关注 bronya-official 喵，关注 bronya-official 谢谢喵')
+
+__version__ = "0.4.100.a"
 
 LOG_CONF = {
     'version': 1,

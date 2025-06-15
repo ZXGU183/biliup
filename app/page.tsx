@@ -49,7 +49,7 @@ const Home: React.FC = () => (
       borderWidth: 0,
     }}
     height="100%"
-    src="https://biliup.github.io/biliup/docs/guide/changelog/"
+    src="/CHANGELOG.html"
   ></iframe>
 )
 
