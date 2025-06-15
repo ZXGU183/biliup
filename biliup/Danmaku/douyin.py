@@ -124,11 +124,14 @@ class Douyin:
                 message = GiftMessage()
                 message.ParseFromString(payload)
                 data = json_format.MessageToDict(message, preserving_proto_field_name=True)
-                name = data['user']['nickName']
-                uid = data['user']['id']
-                gift_name = data['gift']['name']
-                num = data['comboCount']
-                msg_dict = {"name": name, "uid": uid, "gift_name": gift_name, "num": num, "msg_type": "gift"}
-                msgs.append(msg_dict)
+                repeat_end = data['repeatEnd']
+                if repeat_end:
+                    name = data['user']['nickName']
+                    uid = data['user']['id']
+                    gift_name = data['gift']['name']
+                    diamond_count = data['gift']['diamondCount']
+                    num = data['comboCount']
+                    msg_dict = {"name": name, "uid": uid, "gift_name": gift_name, "num": num, "price": diamond_count, "msg_type": "gift"}
+                    msgs.append(msg_dict)
 
         return msgs, ack
