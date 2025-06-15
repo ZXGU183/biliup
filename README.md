@@ -31,7 +31,7 @@
 - `git clone https://github.com/ZXGU183/biliup && cd biliup`
 
 ### Windows
-1. 确保 Python 版本 ≥ 3.9， Node.js 版本 ≥ 18
+1. 确保 Python 版本 ≥ 3.9 （推荐3.11~3.12，过高或过低可能需要手搓依赖工具链）， Node.js 版本 ≥ 18
 2. 安装后端依赖 `pip install .`
 3. 安装前端依赖 `npm i`
 4. 构建前端静态资源 `npm run build`
@@ -39,7 +39,7 @@
 6. 访问 WebUI：`http://你的网络或本地IP:19159`
 
 ### Linux 或 macOS
-1. 存在 Python 版本 ≥ 3.9， Node.js 版本 ≥ 18
+1. 存在 Python 版本 ≥ 3.9 （推荐3.11~3.12，过高或过低可能需要手搓依赖工具链）， Node.js 版本 ≥ 18
 2. 安装后端依赖 `pip3 install .`
 3. 安装前端依赖 `npm i`
 4. 构建前端静态资源 `npm run build`
@@ -50,7 +50,7 @@
 1. 移走保存在程序目录下的录播
 2. **备份** `/biliup/data/` 以及自定义预设等文件
 3. `git pull`
-4. 再次执行安装构建步骤
+4. 按需再次执行安装构建步骤
 5. 若无特殊情况，根据需要还原之前备份的文件即可
 
 ---
