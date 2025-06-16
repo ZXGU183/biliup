@@ -3,11 +3,10 @@ import platform
 import sys
 import os
 
-# Set console color to background and foreground on Windows
+# Execute the following code block if running on Windows.
 if sys.platform == "win32":
-    # This is equivalent to executing "color DF" in CMD
+    # 设置 Windows Shell 配色
     os.system('color 3F')
-    # os.system('echo 关注 bronya-official 喵，关注 bronya-official 谢谢喵')
 
 __version__ = "0.4.100"
 
