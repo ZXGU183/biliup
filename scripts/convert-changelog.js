@@ -35,15 +35,16 @@ try {
     <title>更新日志</title>
     <style>
         /* Base styles (Light Mode) */
-        body {
+        body { /* Default to light theme styling */
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
             margin: 0; /* Reset margin */
             padding: 20px; /* Add padding to body */
             line-height: 1.6;
             background-color: #ffffff; /* White background */
             color: #24292e; /* GitHub-like text color */
-            -webkit-font-smoothing: antialiased; /* Smoother fonts on WebKit */
-            -moz-osx-font-smoothing: grayscale; /* Smoother fonts on Firefox */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out; /* Smooth transitions */
         }
         img { max-width: 100%; height: auto; }
         a { color: #0366d6; text-decoration: none; }
@@ -54,7 +55,7 @@ try {
             margin-bottom: 16px;
             font-weight: 600;
             line-height: 1.25;
-            color: #24292e;
+            /* color is inherited or set by theme-specific rules */
         }
         h1 { font-size: 2em; border-bottom: 1px solid #eaecef; padding-bottom: .3em;}
         h2 { font-size: 1.5em; border-bottom: 1px solid #eaecef; padding-bottom: .3em;}
