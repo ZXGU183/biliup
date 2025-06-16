@@ -1,4 +1,4 @@
-### [>>Wiki<<](https://github.com/ZXGU183/biliup/wiki)
+### [>>Wiki<<](https://github.com/ZXGU183/biliup/wiki) —— [>>Readme<<](https://github.com/ZXGU183/biliup?tab=readme-ov-file)
 
 # 更新日志
 
