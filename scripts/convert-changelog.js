@@ -17,7 +17,16 @@ try {
     process.exit(0);
   }
 
-  const markdownContent = fs.readFileSync(changelogMdPath, 'utf8');
+  // 移除 CHANGELOG.md 中可能存在的 <div class="markdown-body"> 和手动 <p> 标签
+  // 这一步很重要，确保 Markdown 源文件是纯净的
+  let markdownContent = fs.readFileSync(changelogMdPath, 'utf8');
+  // 简单替换，更复杂的清理可能需要更强的HTML解析器，但对于已知结构通常足够
+  markdownContent = markdownContent.replace(/<div class="markdown-body">/g, '').replace(/<\/div>/g, '');
+  // 移除包裹链接的 <p> 标签，例如 <p><a href="...">...</a></p>
+  // 注意：这个正则比较简单，可能不够鲁棒，如果CHANGELOG.md结构复杂，需要更精确的清理
+  markdownContent = markdownContent.replace(/<p>(<a\s+href="[^"]*">[^<]*<\/a>)<\/p>/gi, '$1\n');
+
+
   const htmlContent = marked(markdownContent);
 
   if (!fs.existsSync(publicDir)) {
@@ -50,8 +59,11 @@ try {
             max-width: 800px; /* Limit width for readability */
             margin: 0 auto;   /* Center the content */
         }
+        .markdown-body > *:first-child { margin-top: 0 !important; }
+        .markdown-body > *:last-child { margin-bottom: 0 !important; }
 
-        img { max-width: 100%; height: auto; }
+
+        img { max-width: 100%; height: auto; box-sizing: content-box; background-color: #fff; }
         a { color: #0366d6; text-decoration: none; }
         a:hover { text-decoration: underline; }
 
@@ -62,26 +74,31 @@ try {
             line-height: 1.25;
         }
         h1 { font-size: 2em; padding-bottom: .3em; border-bottom: 1px solid #eaecef; }
-        h2 { font-size: 1.5em; padding-bottom: .3em; border-bottom: 1px solid #eaecef; }
-        h3 { font-size: 1.25em; }
-        h4 { font-size: 1em; }
-        h5 { font-size: .875em; }
-        h6 { font-size: .85em; color: #6a737d; }
+        h2 { font-size: 1.5em; padding-bottom: .3em; border-bottom: 1px solid #eaecef; margin-bottom: 16px; }
+        h3 { font-size: 1.25em; margin-bottom: 16px; }
+        h4 { font-size: 1em; margin-bottom: 16px; }
+        h5 { font-size: .875em; margin-bottom: 16px; }
+        h6 { font-size: .85em; color: #6a737d; margin-bottom: 16px; }
 
         p, blockquote, ul, ol, dl, table, pre {
             margin-top: 0;
-            margin-bottom: 16px;
+            margin-bottom: 16px; /* Ensure paragraphs and other block elements have bottom margin */
         }
 
         ul, ol { padding-left: 2em; }
-        li { margin-bottom: 0.25em; }
-        li > p { margin-top: 16px; }
+        ul li, ol li { margin-bottom: 0.5em; } /* Spacing between list items */
+        ul ul, ul ol, ol ol, ol ul { margin-top: 0.5em; margin-bottom: 0.5em; } /* Spacing for nested lists */
+
+
+        li > p { margin-top: 8px; margin-bottom: 8px; } /* Adjust paragraph spacing within list items */
         li + li { margin-top: .25em; }
 
         blockquote {
             padding: 0 1em;
             color: #6a737d;
             border-left: .25em solid #dfe2e5;
+            margin-left: 0; /* Resetting default browser margin for blockquote */
+            margin-right: 0;
         }
 
         code, tt {
@@ -101,7 +118,7 @@ try {
             background-color: #f6f8fa;
             border-radius: 6px;
         }
-        pre code { padding: 0; margin: 0; font-size: 100%; background-color: transparent; border-radius: 0; border: 0; }
+        pre code { padding: 0; margin: 0; font-size: 100%; background-color: transparent; border-radius: 0; border: 0; white-space: pre-wrap; word-break: break-all; }
 
         hr {
             height: .25em;
@@ -111,7 +128,7 @@ try {
             border: 0;
         }
 
-        table { display: block; width: 100%; overflow: auto; }
+        table { display: block; width: 100%; overflow: auto; border-spacing: 0; border-collapse: collapse; }
         table th { font-weight: 600; }
         table th, table td { padding: 6px 13px; border: 1px solid #dfe2e5; }
         table tr { background-color: #fff; border-top: 1px solid #c6cbd1; }
@@ -121,16 +138,17 @@ try {
         body.theme-light {
             background-color: #ffffff; color: #24292e;
         }
-        body.theme-light .markdown-body { /* Ensure specificity */
+        body.theme-light .markdown-body {
             color: #24292e;
         }
+        body.theme-light h1, body.theme-light h2, body.theme-light h3, body.theme-light h4, body.theme-light h5, body.theme-light h6 { color: #24292e; }
         body.theme-light h1, body.theme-light h2 { border-bottom-color: #eaecef; }
         body.theme-light h6 { color: #6a737d; }
         body.theme-light a { color: #0366d6; }
         body.theme-light code { background-color: rgba(27,31,35,.05); color: #24292e; }
         body.theme-light pre { background-color: #f6f8fa; color: #24292e; }
         body.theme-light pre code { background-color: transparent; color: #24292e; }
-        body.theme-light hr { background-color: #eaecef; }
+        body.theme-light hr { background-color: #e1e4e8; }
         body.theme-light blockquote { color: #6a737d; border-left-color: #dfe2e5; }
         body.theme-light table th, body.theme-light table td { border-color: #dfe2e5; }
         body.theme-light table tr { background-color: #fff; border-top-color: #c6cbd1; }
@@ -140,10 +158,10 @@ try {
         body.theme-dark {
             background-color: #0d1117; color: #c9d1d9;
         }
-        body.theme-dark h1, body.theme-dark h2, body.theme-dark h3, body.theme-dark h4, body.theme-dark h5, body.theme-dark h6 { color: #c9d1d9; border-bottom-color: #21262d; }
-        body.theme-dark .markdown-body { /* Ensure specificity */
+        body.theme-dark .markdown-body {
             color: #c9d1d9;
         }
+        body.theme-dark h1, body.theme-dark h2, body.theme-dark h3, body.theme-dark h4, body.theme-dark h5, body.theme-dark h6 { color: #c9d1d9; }
         body.theme-dark h1, body.theme-dark h2 { border-bottom-color: #30363d; }
         body.theme-dark h6 { color: #8b949e; }
         body.theme-dark a { color: #58a6ff; }

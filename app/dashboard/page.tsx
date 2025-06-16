@@ -94,6 +94,8 @@ const Dashboard: React.FC = () => {
           position: 'sticky',
           top: 0,
           zIndex: 1,
+          // height: '56px', // 如果Nav组件自身没有固定高度，可以在这里强制，但通常Nav mode="horizontal"有默认高度
+          // borderBottom: '1px solid var(--semi-color-border)', // 统一底部边框样式
         }}
       >
         <Nav
@@ -127,6 +129,8 @@ const Dashboard: React.FC = () => {
             </Button>
           }
           mode="horizontal"
+          // style={{ height: '100%' }} // 确保Nav填满Header的高度
+          // className={styles.pageHeaderNav} // 可以添加自定义类名以便更精确控制
         ></Nav>
       </Header>
       <Content>
