@@ -58,6 +58,7 @@ try {
         .markdown-body {
             max-width: 800px; /* Limit width for readability */
             margin: 0 auto;   /* Center the content */
+            /* Attempt to reset inherited styles that might affect layout */
         }
         .markdown-body > *:first-child { margin-top: 0 !important; }
         .markdown-body > *:last-child { margin-bottom: 0 !important; }
@@ -71,27 +72,32 @@ try {
             margin-top: 24px;
             margin-bottom: 16px;
             font-weight: 600;
-            line-height: 1.25;
+            line-height: 1.25 !important; /* Ensure line-height for headers */
         }
-        h1 { font-size: 2em; padding-bottom: .3em; border-bottom: 1px solid #eaecef; }
-        h2 { font-size: 1.5em; padding-bottom: .3em; border-bottom: 1px solid #eaecef; margin-bottom: 16px; }
-        h3 { font-size: 1.25em; margin-bottom: 16px; }
-        h4 { font-size: 1em; margin-bottom: 16px; }
-        h5 { font-size: .875em; margin-bottom: 16px; }
-        h6 { font-size: .85em; color: #6a737d; margin-bottom: 16px; }
+        .markdown-body h1 { font-size: 2em !important; padding-bottom: .3em !important; border-bottom: 1px solid #eaecef !important; }
+        .markdown-body h2 { font-size: 1.5em !important; padding-bottom: .3em !important; border-bottom: 1px solid #eaecef !important; margin-bottom: 16px !important; }
+        .markdown-body h3 { font-size: 1.25em !important; margin-bottom: 16px !important; }
+        .markdown-body h4 { font-size: 1em !important; margin-bottom: 16px !important; }
+        .markdown-body h5 { font-size: .875em !important; margin-bottom: 16px !important; }
+        .markdown-body h6 { font-size: .85em !important; color: #6a737d; margin-bottom: 16px !important; }
 
-        p, blockquote, ul, ol, dl, table, pre {
-            margin-top: 0;
-            margin-bottom: 16px; /* Ensure paragraphs and other block elements have bottom margin */
+        .markdown-body p,
+        .markdown-body blockquote,
+        .markdown-body ul,
+        .markdown-body ol,
+        .markdown-body dl,
+        .markdown-body table,
+        .markdown-body pre {
+            margin-top: 0 !important;
+            margin-bottom: 16px !important; /* Ensure paragraphs and other block elements have bottom margin */
+            line-height: 1.6 !important; /* Ensure line-height for these elements */
         }
 
-        ul, ol { padding-left: 2em; }
-        ul li, ol li { margin-bottom: 0.5em; } /* Spacing between list items */
-        ul ul, ul ol, ol ol, ol ul { margin-top: 0.5em; margin-bottom: 0.5em; } /* Spacing for nested lists */
-
-
-        li > p { margin-top: 8px; margin-bottom: 8px; } /* Adjust paragraph spacing within list items */
-        li + li { margin-top: .25em; }
+        .markdown-body ul, .markdown-body ol { padding-left: 2em !important; }
+        .markdown-body ul li, .markdown-body ol li { margin-bottom: 0.5em !important; line-height: 1.6 !important; }
+        .markdown-body ul ul, .markdown-body ul ol, .markdown-body ol ol, .markdown-body ol ul { margin-top: 0.5em !important; margin-bottom: 0.5em !important; }
+        .markdown-body li > p { margin-top: 8px !important; margin-bottom: 8px !important; line-height: 1.6 !important;}
+        .markdown-body li + li { margin-top: .25em !important; }
 
         blockquote {
             padding: 0 1em;
@@ -99,6 +105,10 @@ try {
             border-left: .25em solid #dfe2e5;
             margin-left: 0; /* Resetting default browser margin for blockquote */
             margin-right: 0;
+        }
+        .markdown-body blockquote { /* Ensure specificity for !important if needed */
+            padding: 0 1em !important;
+            border-left-width: .25em !important;
         }
 
         code, tt {
@@ -109,6 +119,10 @@ try {
             border-radius: 3px;
             font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
         }
+        .markdown-body code, .markdown-body tt {
+            line-height: 1.6; /* Potentially reset line-height for inline code */
+        }
+
         pre {
             word-wrap: normal;
             padding: 16px;
@@ -118,6 +132,9 @@ try {
             background-color: #f6f8fa;
             border-radius: 6px;
         }
+        .markdown-body pre {
+            line-height: 1.45 !important; /* Ensure line-height for pre blocks */
+        }
         pre code { padding: 0; margin: 0; font-size: 100%; background-color: transparent; border-radius: 0; border: 0; white-space: pre-wrap; word-break: break-all; }
 
         hr {
@@ -126,6 +143,9 @@ try {
             margin: 24px 0;
             background-color: #e1e4e8;
             border: 0;
+        }
+        .markdown-body hr {
+            margin: 24px 0 !important;
         }
 
         table { display: block; width: 100%; overflow: auto; border-spacing: 0; border-collapse: collapse; }
@@ -141,7 +161,7 @@ try {
         body.theme-light .markdown-body {
             color: #24292e;
         }
-        body.theme-light h1, body.theme-light h2, body.theme-light h3, body.theme-light h4, body.theme-light h5, body.theme-light h6 { color: #24292e; }
+        body.theme-light .markdown-body h1, body.theme-light .markdown-body h2, body.theme-light .markdown-body h3, body.theme-light .markdown-body h4, body.theme-light .markdown-body h5, body.theme-light .markdown-body h6 { color: #24292e !important; }
         body.theme-light h1, body.theme-light h2 { border-bottom-color: #eaecef; }
         body.theme-light h6 { color: #6a737d; }
         body.theme-light a { color: #0366d6; }
@@ -161,7 +181,7 @@ try {
         body.theme-dark .markdown-body {
             color: #c9d1d9;
         }
-        body.theme-dark h1, body.theme-dark h2, body.theme-dark h3, body.theme-dark h4, body.theme-dark h5, body.theme-dark h6 { color: #c9d1d9; }
+        body.theme-dark .markdown-body h1, body.theme-dark .markdown-body h2, body.theme-dark .markdown-body h3, body.theme-dark .markdown-body h4, body.theme-dark .markdown-body h5, body.theme-dark .markdown-body h6 { color: #c9d1d9 !important; }
         body.theme-dark h1, body.theme-dark h2 { border-bottom-color: #30363d; }
         body.theme-dark h6 { color: #8b949e; }
         body.theme-dark a { color: #58a6ff; }
@@ -186,8 +206,8 @@ try {
             body:not(.theme-light):not(.theme-dark) h2,
             body:not(.theme-light):not(.theme-dark) h3,
             body:not(.theme-light):not(.theme-dark) h4,
-            body:not(.theme-light):not(.theme-dark) h5,
-            body:not(.theme-light):not(.theme-dark) h6 { color: #c9d1d9; }
+            body:not(.theme-light):not(.theme-dark) h5 { color: #c9d1d9 !important; }
+            body:not(.theme-light):not(.theme-dark) h6 { color: #c9d1d9 !important; } /* Ensure h6 color is also important if needed */
             body:not(.theme-light):not(.theme-dark) h1, body:not(.theme-light):not(.theme-dark) h2 { border-bottom-color: #30363d; }
             body:not(.theme-light):not(.theme-dark) h6 { color: #8b949e; }
             body:not(.theme-light):not(.theme-dark) a { color: #58a6ff; }

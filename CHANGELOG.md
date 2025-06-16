@@ -15,7 +15,7 @@ What's Changed
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.99...v0.4.100
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.100">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.100)
 
 #### v0.4.99 - 2025-06-10
 
@@ -33,7 +33,7 @@ New Contributors
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.98...v0.4.99
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.99">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.99)
 
 ### May (2025)
 
@@ -45,7 +45,7 @@ What's Changed
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.97...v0.4.98
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.98">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.98)
 
 #### v0.4.97 - 2025-05-06
 
@@ -57,7 +57,7 @@ What's Changed
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.96...v0.4.97
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.97">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.97)
 
 ### April (2025)
 
@@ -71,7 +71,7 @@ What's Changed
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.95...v0.4.96
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.96">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.96)
 
 #### v0.4.95 - 2025-04-27
 
@@ -95,7 +95,7 @@ New Contributors
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.94...v0.4.95
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.95">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.95)
 
 #### v0.4.94 - 2025-04-24
 
@@ -111,7 +111,7 @@ New Contributors
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.93...v0.4.94
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.94">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.94)
 
 #### v0.4.93 - 2025-04-14
 
@@ -121,7 +121,7 @@ What's Changed
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.92...v0.4.93
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.93">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.93)
 
 #### v0.4.92 - 2025-04-05
 
@@ -135,7 +135,7 @@ What's Changed
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.91...v0.4.92
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.92">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.92)
 
 #### v0.4.91 - 2025-04-03
 
@@ -153,7 +153,7 @@ New Contributors
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.90...v0.4.91
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.91">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.91)
 
 #### v0.4.90 - 2025-04-01
 
@@ -165,7 +165,7 @@ What's Changed
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.89...v0.4.90
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.90">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.90)
 
 ### March (2025)
 
@@ -187,7 +187,7 @@ What's Changed
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.88...v0.4.89
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.89">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.89)
 
 #### v0.4.88 - 2025-03-23
 
@@ -197,7 +197,7 @@ What's Changed
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.87...v0.4.88
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.88">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.88)
 
 #### v0.4.87 - 2025-03-12
 
@@ -207,7 +207,7 @@ What's Changed
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.86...v0.4.87
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.87">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.87)
 
 #### v0.4.86 - 2025-03-12
 
@@ -221,7 +221,7 @@ New Contributors
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.85...v0.4.86
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.86">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.86)
 
 #### v0.4.85 - 2025-03-11
 
@@ -245,7 +245,7 @@ New Contributors
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.84...v0.4.85
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.85">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.85)
 
 ### February (2025)
 
@@ -265,7 +265,7 @@ New Contributors
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.83...v0.4.84
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.84">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.84)
 
 #### v0.4.83 - 2025-02-06
 
@@ -277,7 +277,7 @@ What's Changed
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.82...v0.4.83
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.83">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.83)
 
 #### v0.4.82 - 2025-02-05
 
@@ -293,7 +293,7 @@ What's Changed
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.81...v0.4.82
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.82">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.82)
 
 ### January (2025)
 
@@ -309,7 +309,7 @@ New Contributors
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.80...v0.4.81
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.81">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.81)
 
 ## 2024 年
 
@@ -329,7 +329,7 @@ fixes https://github.com/biliup/biliup/issues/1116
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.79...v0.4.80
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.80">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.80)
 
 #### v0.4.79 - 2024-12-19
 
@@ -355,7 +355,7 @@ New Contributors
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.78...v0.4.79
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.79">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.79)
 
 ### September (2024)
 
@@ -369,7 +369,7 @@ What's Changed
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.77...v0.4.78
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.78">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.78)
 
 ### August (2024)
 
@@ -389,7 +389,7 @@ New Contributors
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.76...v0.4.77
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.77">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.77)
 
 #### v0.4.76 - 2024-08-12
 
@@ -407,7 +407,7 @@ New Contributors
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.75...v0.4.76
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.76">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.76)
 
 #### v0.4.75 - 2024-08-05
 
@@ -417,7 +417,7 @@ What's Changed
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.74...v0.4.75
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.75">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.75)
 
 ### July (2024)
 
@@ -429,7 +429,7 @@ What's Changed
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.73...v0.4.74
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.74">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.74)
 
 #### v0.4.73 - 2024-07-31
 
@@ -439,7 +439,7 @@ What's Changed
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.72...v0.4.73
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.73">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.73)
 
 #### v0.4.72 - 2024-07-17
 
@@ -453,7 +453,7 @@ What's Changed
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.71...v0.4.72
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.72">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.72)
 
 #### v0.4.71 - 2024-07-10
 
@@ -473,7 +473,7 @@ New Contributors
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.70...v0.4.71
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.71">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.71)
 
 ### June (2024)
 
@@ -485,7 +485,7 @@ What's Changed
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.69...v0.4.70
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.70">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.70)
 
 #### v0.4.69 - 2024-06-22
 
@@ -501,13 +501,13 @@ What's Changed
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.68...v0.4.69
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.69">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.69)
 
 #### v0.4.68 - 2024-06-02
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.67...v0.4.68
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.68">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.68)
 
 ### May (2024)
 
@@ -515,7 +515,7 @@ What's Changed
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.66...v0.4.67
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.67">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.67)
 
 #### v0.4.66 - 2024-05-28
 
@@ -525,7 +525,7 @@ What's Changed
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.65...v0.4.66
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.66">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.66)
 
 #### v0.4.65 - 2024-05-26
 
@@ -537,7 +537,7 @@ What's Changed
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.64...v0.4.65
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.65">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.65)
 
 #### v0.4.64 - 2024-05-20
 
@@ -547,13 +547,13 @@ What's Changed
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.63...v0.4.64
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.64">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.64)
 
 #### v0.4.63 - 2024-05-19
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.62...v0.4.63
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.63">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.63)
 
 #### v0.4.62 - 2024-05-19
 
@@ -563,7 +563,7 @@ What's Changed
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.61...v0.4.62
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.62">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.62)
 
 #### v0.4.61 - 2024-05-19
 
@@ -573,7 +573,7 @@ What's Changed
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.60...v0.4.61
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.61">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.61)
 
 #### v0.4.60 - 2024-05-18
 
@@ -587,7 +587,7 @@ What's Changed
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.59...v0.4.60
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.60">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.60)
 
 #### v0.4.59 - 2024-05-13
 
@@ -599,7 +599,7 @@ What's Changed
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.58...v0.4.59
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.59">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.59)
 
 #### v0.4.58 - 2024-05-11
 
@@ -617,7 +617,7 @@ What's Changed
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.57...v0.4.58
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.58">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.58)
 
 ### April (2024)
 
@@ -631,7 +631,7 @@ What's Changed
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.56...v0.4.57
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.57">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.57)
 
 #### v0.4.56 - 2024-04-27
 
@@ -641,7 +641,7 @@ What's Changed
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.55...v0.4.56
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.56">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.56)
 
 #### v0.4.55 - 2024-04-27
 
@@ -659,19 +659,19 @@ What's Changed
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.54...v0.4.55
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.55">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.55)
 
 #### v0.4.54 - 2024-04-24
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.53...v0.4.54
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.54">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.54)
 
 #### v0.4.53 - 2024-04-23
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.52...v0.4.53
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.53">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.53)
 
 #### v0.4.52 - 2024-04-23
 
@@ -701,7 +701,7 @@ New Contributors
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.51...v0.4.52
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.52">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.52)
 
 #### v0.4.51 - 2024-04-17
 
@@ -713,7 +713,7 @@ What's Changed
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.50...v0.4.51
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.51">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.51)
 
 #### v0.4.50 - 2024-04-16
 
@@ -731,7 +731,7 @@ What's Changed
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.49...v0.4.50
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.50">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.50)
 
 #### v0.4.49 - 2024-04-10
 
@@ -753,7 +753,7 @@ New Contributors
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.48...v0.4.49
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.49">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.49)
 
 #### v0.4.48 - 2024-04-07
 
@@ -763,7 +763,7 @@ What's Changed
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.47...v0.4.48
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.48">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.48)
 
 ### March (2024)
 
@@ -775,7 +775,7 @@ What's Changed
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.46...v0.4.47
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.47">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.47)
 
 #### v0.4.46 - 2024-03-25
 
@@ -787,7 +787,7 @@ What's Changed
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.45...v0.4.46
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.46">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.46)
 
 #### v0.4.45 - 2024-03-22
 
@@ -797,7 +797,7 @@ What's Changed
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.44...v0.4.45
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.45">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.45)
 
 #### v0.4.44 - 2024-03-17
 
@@ -807,7 +807,7 @@ What's Changed
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.43...v0.4.44
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.44">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.44)
 
 #### v0.4.43 - 2024-03-17
 
@@ -817,19 +817,19 @@ What's Changed
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.42...v0.4.43
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.43">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.43)
 
 #### v0.4.42 - 2024-03-11
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.41...v0.4.42
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.42">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.42)
 
 #### v0.4.41 - 2024-03-07
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.40...v0.4.41
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.41">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.41)
 
 #### v0.4.40 - 2024-03-05
 
@@ -839,7 +839,7 @@ What's Changed
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.39...v0.4.40
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.40">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.40)
 
 #### v0.4.39 - 2024-03-02
 
@@ -849,7 +849,7 @@ What's Changed
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.38...v0.4.39
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.39">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.39)
 
 ### February (2024)
 
@@ -863,7 +863,7 @@ What's Changed
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.37...v0.4.38
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.38">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.38)
 
 #### v0.4.37 - 2024-02-28
 
@@ -877,7 +877,7 @@ What's Changed
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.36...v0.4.37
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.37">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.37)
 
 #### v0.4.36 - 2024-02-27
 
@@ -901,7 +901,7 @@ New Contributors
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.35...v0.4.36
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.36">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.36)
 
 #### v0.4.35 - 2024-02-21
 
@@ -917,14 +917,14 @@ What's Changed
 
 **Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.34...v0.4.35
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.35">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.35)
 ### January (2024)
 
 #### v0.4.34 - 2024-01-27
 
 修复B站请求开播状况API352风控的问题
 
-<a href="https://github.com/biliup/biliup/releases/tag/v0.4.34">在GitHub上查看此版本</a>
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.34)
 
 ## 0.4.32-0.4.33
 ⚠️⚠️⚠️⚠️⚠️⚠️超大版本更新，在升级到此版本之前请认真阅读说明。
