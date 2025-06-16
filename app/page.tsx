@@ -1,4 +1,5 @@
 'use client'
+// 其他 import 保持不变
 import {
   Layout,
   Nav,
@@ -37,105 +38,102 @@ import {
   IconEdit2Stroked,
   IconDeleteStroked,
 } from '@douyinfe/semi-icons'
-import { useState, useEffect, useRef } from 'react' // Added useEffect, useRef
-import useStreamers from './lib/use-streamers'
+import { useState, useEffect, useRef, useCallback } from 'react'
+import useStreamers from './lib/use-streamers' // 假设这些自定义 hook 和组件存在且正确
 import TemplateModal from './ui/TemplateModal'
 import { DropDownMenuItem } from '@douyinfe/semi-ui/lib/es/dropdown'
 import { LiveStreamerEntity } from './lib/api-streamer'
 
-const Home: React.FC = () => (
-  <iframe
-    ref={iframeRef}
-    style={{
-      borderWidth: 0,
-    }}
-    height="100%"
-    src="/CHANGELOG.html"
-  ></iframe>
-);
+
+// 辅助函数，用于确定最终生效的主题
+const getEffectiveTheme = (themeMode: string | null): 'light' | 'dark' => {
+  if (themeMode === 'dark') return 'dark';
+  if (themeMode === 'light') return 'light';
+  // 对于 'auto' 或 null/undefined，根据系统偏好来决定
+  if (typeof window !== 'undefined' && window.matchMedia) {
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+  return 'light'; // 兜底，例如在SSR或matchMedia不可用时
+};
 
 const HomeContainer: React.FC = () => {
   const iframeRef = useRef<HTMLIFrameElement>(null);
-  // This state helps ensure the effect runs if the iframe loads later than the initial theme check.
-  const [appTheme, setAppTheme] = useState<string | null>(null);
+  const [appTheme, setAppTheme] = useState<string | null>(() => {
+    // 如果在客户端，尝试从 document.body 初始化
+    if (typeof document !== 'undefined') {
+      return document.body.getAttribute('theme-mode');
+    }
+    return null;
+  });
 
-  useEffect(() => {
-    const getEffectiveTheme = (themeMode: string | null): 'light' | 'dark' => {
-      if (themeMode === 'dark') return 'dark';
-      if (themeMode === 'light') return 'light';
-      // For 'auto' or null/undefined, determine from system preference
-      return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-    };
-
-    const applyThemeToIframe = (themeMode: string | null) => {
-      if (iframeRef.current && iframeRef.current.contentWindow) {
-        const iframeContentWindow = iframeRef.current.contentWindow as any;
-        if (typeof iframeContentWindow.setChangelogTheme === 'function') {
-          const effectiveTheme = getEffectiveTheme(themeMode);
-          iframeContentWindow.setChangelogTheme(effectiveTheme);
-        } else {
-          // Function might not be available yet if iframe is still loading its script
-          // It will be caught by the iframe's 'load' event or subsequent appTheme changes.
-        }
+  const applyThemeToIframe = useCallback((themeToApply: 'light' | 'dark') => {
+    if (iframeRef.current && iframeRef.current.contentWindow) {
+      console.log('[父页面] 尝试向 iframe 应用主题。生效主题:', themeToApply);
+      const iframeContentWindow = iframeRef.current.contentWindow as any;
+      if (typeof iframeContentWindow.setChangelogTheme === 'function') {
+        iframeContentWindow.setChangelogTheme(themeToApply);
+        console.log('[父页面] 已调用 iframe.setChangelogTheme，参数:', themeToApply);
+      } else {
+        console.warn('[父页面] 未找到 iframe.setChangelogTheme 函数。Iframe 可能未完全加载或脚本执行失败。');
       }
-    };
+    } else {
+      console.warn('[父页面] Iframe ref 或 contentWindow 不可用，无法同步主题。');
+    }
+  }, []);
 
-    // Function to initialize and update theme
-    const updateIframeTheme = () => {
+  // 当 appTheme 状态改变时，应用主题的 Effect
+  useEffect(() => {
+    const effectiveTheme = getEffectiveTheme(appTheme);
+    console.log(`[父页面] appTheme 状态变为: ${appTheme}, 生效主题: ${effectiveTheme}`);
+    applyThemeToIframe(effectiveTheme);
+  }, [appTheme, applyThemeToIframe]);
+
+  // 用于 MutationObserver 和 iframe 加载事件的 Effect
+  useEffect(() => {
+    const updateAndTriggerThemeSync = () => {
       const currentThemeOnBody = document.body.getAttribute('theme-mode');
-      setAppTheme(currentThemeOnBody); // Update state
-      applyThemeToIframe(currentThemeOnBody);
+      console.log('[父页面] updateAndTriggerThemeSync - 父页面 body 当前 theme-mode:', currentThemeOnBody);
+      setAppTheme(currentThemeOnBody);
     };
 
-    // Initial theme sync when iframe loads
     const handleIframeLoad = () => {
-      updateIframeTheme();
+      console.log('[父页面] Iframe 已加载。');
+      updateAndTriggerThemeSync();
     };
 
-    if (iframeRef.current) {
-      iframeRef.current.addEventListener('load', handleIframeLoad);
+    const currentIframe = iframeRef.current;
+    if (currentIframe) {
+      currentIframe.addEventListener('load', handleIframeLoad);
     }
 
-    // Observe changes to document.body's theme-mode attribute
     const observer = new MutationObserver((mutationsList) => {
       for (const mutation of mutationsList) {
         if (mutation.type === 'attributes' && mutation.attributeName === 'theme-mode') {
-          updateIframeTheme();
+          console.log('[父页面] 检测到父页面 body 的 theme-mode 属性变化。');
+          updateAndTriggerThemeSync();
         }
       }
     });
 
-    observer.observe(document.body, { attributes: true });
-    updateIframeTheme(); // Initial sync attempt
+    if (typeof document !== 'undefined') { // 确保在客户端执行
+        observer.observe(document.body, { attributes: true });
+        updateAndTriggerThemeSync(); // 初始同步
+    }
 
-    // Cleanup
+
     return () => {
+      console.log('[父页面] 清理 HomeContainer 的 effects。');
       observer.disconnect();
-      if (iframeRef.current) {
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-        iframeRef.current.removeEventListener('load', handleIframeLoad);
+      if (currentIframe) {
+        currentIframe.removeEventListener('load', handleIframeLoad);
       }
     };
-  }, []); // Runs once on mount
-
-  // This effect ensures that if appTheme state changes (e.g. from initial null to actual theme),
-  // we re-attempt to apply the theme. This helps if the iframe wasn't ready during the first attempt.
-  useEffect(() => {
-    if (iframeRef.current && iframeRef.current.contentWindow) {
-        const iframeContentWindow = iframeRef.current.contentWindow as any;
-        if (typeof iframeContentWindow.setChangelogTheme === 'function') {
-            const currentThemeOnBody = document.body.getAttribute('theme-mode');
-            const effectiveTheme = (currentThemeOnBody === 'dark' || (currentThemeOnBody !== 'light' && window.matchMedia('(prefers-color-scheme: dark)').matches)) ? 'dark' : 'light';
-            iframeContentWindow.setChangelogTheme(effectiveTheme);
-        }
-    }
-  }, [appTheme]); // Re-run when appTheme changes
+  }, []); // 空依赖数组表示此 effect 仅在挂载时运行一次，并在卸载时清理
 
   return (
     <iframe
       ref={iframeRef}
-      style={{ borderWidth: 0 }}
-      height="100%"
+      style={{ borderWidth: 0, width: '100%', height: '100%' }}
       src="/CHANGELOG.html"
       title="Changelog"
     ></iframe>

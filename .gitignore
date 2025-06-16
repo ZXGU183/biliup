@@ -35,7 +35,7 @@ watch_process.pid
 biliup/**/public
 public/CHANGELOG.html
 *.xml
-!package-lock.json
+package-lock.json
 qrcode.png
 *.log
 /*.ts
