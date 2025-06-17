@@ -68,7 +68,7 @@
 
 ## 🤝其他💴
 * 同原项目，请参照
-* 感谢所有上游贡献者
+* 感谢所有的BiliUP贡献者
 
 ## ⭐Stars
 [![Star History Chart](https://api.star-history.com/svg?repos=biliup/biliup&type=Date)](https://star-history.com/#biliup/biliup&Date)
