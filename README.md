@@ -16,7 +16,7 @@
 </div>
 
 
-# 📜[» 分叉笔记 ](https://github.com/ZXGU183/biliup/wiki)
+# 📜[» 分叉笔记（内含使用指导） ](https://github.com/ZXGU183/biliup/wiki)
 
 - [原项目](https://github.com/biliup/biliup)
 
@@ -27,7 +27,7 @@
 ## 🚀 从构建使用
 
 - 仔细阅读 [Wiki](https://github.com/ZXGU183/biliup/wiki) 和[读我文件](https://github.com/ZXGU183/biliup/blob/master/README.md)，**尤其是对后续更新的提示**
-- [安装](https://zhuanlan.zhihu.com/p/662421567)  [**FFmpeg**](https://ffmpeg.org/) ，**推荐**[最新正式版（即 nX.X ）的 gpl-shared 版本](https://github.com/BtbN/FFmpeg-Builds/releases)
+- [安装](https://zhuanlan.zhihu.com/p/662421567)  [**FFmpeg**](https://ffmpeg.org/) ，**推荐**[最新正式版（即 nX.X(.X) ）的 gpl-shared 版本](https://github.com/BtbN/FFmpeg-Builds/releases)
 - `git clone https://github.com/ZXGU183/biliup && cd biliup`
 
 ### Windows

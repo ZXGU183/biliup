@@ -7,6 +7,18 @@
 - 🔧已修复的问题
 - ⚠️需要手动操作的更新信息
 
+## 0.4.100.1
+
+- 🔧[fix](https://github.com/biliup/biliup/commit/44b847eed9fae41bed761f4ad9656d6cf532beff): 回滚文件名编解码返回逻辑以修复直接出现unicode的问题
+
+- 🔧[fix(Danmaku.bilibili)](https://github.com/biliup/biliup/commit/498391151048d2ba1511912504f50a31824eaac7): 修复B站弹幕连接风控，来自[xxxxuanran](https://github.com/biliup/biliup/commit/3c78c320d24264bfff9f16f67330388b210fcbd9)
+
+- 🔧[fix(sync-downloader-title)](https://github.com/biliup/biliup/commit/5fe8a1c13315c3f1b8707a8215058ad2c507f896): 优先考虑Sync-Downloader的定义标题格式，来自[ransxd](https://github.com/biliup/biliup/commit/30db98fc4455ee83b9853857c260da0ea793bf43)
+
+- _💡新增文件包括Windows下的FFmpeg变量批处理和配置模板、推荐的目录模板链式处理流部分示例，使用说明见[Wiki](https://github.com/ZXGU183/biliup/wiki)_
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.100.1)
+
 #### v0.4.100 - 2025-06-11
 
 What's Changed
