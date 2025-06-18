@@ -17,7 +17,7 @@
 
 - _💡新增文件包括Windows下的FFmpeg变量批处理和配置模板、推荐的目录模板链式处理流部分示例，使用说明见[Wiki](https://github.com/ZXGU183/biliup/wiki)_
 
-[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.100.1)
+[>在 Github 查看此版本](https://github.com/ZXGU183/biliup/releases/tag/v0.4.100.1)
 
 #### v0.4.100 - 2025-06-11
 

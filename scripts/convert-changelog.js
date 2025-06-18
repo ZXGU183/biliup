@@ -235,6 +235,19 @@ try {
         // 记录尝试设置后 body 的 class
         console.log('[Iframe] setChangelogTheme 执行后 body 的 class:', document.body.className);
       };
+
+      // Modify GitHub links to open in a new tab
+      document.addEventListener('DOMContentLoaded', function() {
+        const links = document.querySelectorAll('.markdown-body a');
+        links.forEach(function(link) {
+          if (link.hostname === 'github.com') {
+            link.setAttribute('target', '_blank');
+            link.setAttribute('rel', 'noopener noreferrer');
+            console.log('[Iframe] Modified GitHub link:', link.href);
+          }
+        });
+        console.log('[Iframe] Finished processing links for target="_blank".');
+      });
     </script>
 </body>
 </html>`;
