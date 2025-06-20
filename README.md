@@ -18,15 +18,17 @@
 
 # 📜[» 分叉笔记（内含使用指导） ](https://github.com/ZXGU183/biliup/wiki)
 
-- [原项目](https://github.com/biliup/biliup)
-
-- [官方文档](https://docs.biliup.me)
+[「原项目」](https://github.com/biliup/biliup)——[『官方文档』](https://docs.biliup.me)
 
 ## 🍱 [下载即食 «](https://github.com/ZXGU183/biliup/releases)
 
+- Windows x64 用户：直接下载`biliup-[version]_win64.exe`运行即可，无需额外准备环境，如有必要可下载`PathTool_FFmpeg-[version]`并[按需执行其中的批处理](https://github.com/ZXGU183/biliup/wiki/%E6%A8%A1%E6%9D%BF#%E8%B7%AF%E5%BE%84%E5%8F%98%E9%87%8F%E5%A4%84%E7%90%86%E6%A8%A1%E6%9D%BF)
+
+- 其他架构平台和操作系统：下载pip包并执行本地安装，详可参见[Wiki中的“使用准备”篇](https://github.com/ZXGU183/biliup/wiki/%E4%BD%BF%E7%94%A8%E5%87%86%E5%A4%87)
+
 ## 🚀 从构建使用
 
-- 仔细阅读 [Wiki](https://github.com/ZXGU183/biliup/wiki) 和[读我文件](https://github.com/ZXGU183/biliup/blob/master/README.md)，**尤其是对后续更新的提示**
+- 仔细阅读 [Wiki](https://github.com/ZXGU183/biliup/wiki) 和[读我文件](https://github.com/ZXGU183/biliup/blob/master/README.md)，**尤其是对[后续更新](https://github.com/ZXGU183/biliup?tab=readme-ov-file#%EF%B8%8F-%E5%90%8E%E7%BB%AD%E6%9B%B4%E6%96%B0)的提示**
 - [安装](https://zhuanlan.zhihu.com/p/662421567)  [**FFmpeg**](https://ffmpeg.org/) ，**推荐**[最新构建（即 master）的 gpl-shared 版本](https://github.com/BtbN/FFmpeg-Builds/releases)
 - `git clone https://github.com/ZXGU183/biliup && cd biliup`
 

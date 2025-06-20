@@ -8,7 +8,7 @@ if sys.platform == "win32":
     # 设置 Windows Shell 配色
     os.system('color 3F')
 
-__version__ = "0.4.100"
+__version__ = "0.4.100.3a"
 
 LOG_CONF = {
     'version': 1,
