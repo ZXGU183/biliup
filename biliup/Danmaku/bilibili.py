@@ -23,7 +23,8 @@ class Bilibili:
         'accept-language': 'zh-CN,zh;q=0.8,en-US;q=0.5,en;q=0.3',
         'user-agent': random_user_agent(),
         'origin': 'https://live.bilibili.com',
-        'referer': 'https://live.bilibili.com'
+        'referer': 'https://live.bilibili.com',
+        'cookie': ""
     }
 
     @staticmethod
