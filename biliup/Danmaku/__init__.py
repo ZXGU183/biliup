@@ -345,7 +345,7 @@ class DanmakuClient(IDanmakuClient):
                     logger.warning(f"{DanmakuClient.__name__}:{self.__url}: 弹幕连接异常,将在 30 秒后重试")
                 except:
                     # 记录异常不到外部处理
-                    logger.exception(f"{DanmakuClient.__name__}:{self.__url}: 弹幕异常,将在 30 秒后重试")
+                    logger.exception(f"{DanmakuClient.__name__}:{self.__url}: 弹幕异常,将在 30 秒后重试", exc_info=True)
                 finally:
                     if danmaku_tasks:
                         for danmaku_task in danmaku_tasks:
