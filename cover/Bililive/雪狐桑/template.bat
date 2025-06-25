@@ -16,14 +16,21 @@ if not exist "%datefolder%" (
     echo 文件夹已存在: "%datefolder%"
 )
 
-:: 移动当前目录的JPG文件到日期文件夹
+:: 移动当前目录的JPG和XML文件到日期文件夹
 echo.
 echo 正在移动JPG文件...
 move "*.jpg" "%datefolder%\" >nul 2>&1
 if %errorlevel% equ 0 (
-    echo 已移动JPG文件到 "%datefolder%\"
+    echo 已移动到 "%datefolder%\"
 ) else (
     echo 没有找到JPG文件可移动
+)
+echo 正在移动XML文件...
+move "*.xml" "%datefolder%\" >nul 2>&1
+if %errorlevel% equ 0 (
+    echo 已移动到 "%datefolder%\"
+) else (
+    echo 没有找到XML文件可移动
 )
 
 :: 转换MP4和FLV文件到日期文件夹
@@ -59,19 +66,13 @@ for %%F in (*.mp4 *.flv) do (
 echo.
 echo 正在将原始 .flv 文件移动到上级目录 (%~dp0..\)...
 if exist "*.flv" (
-    move "*.flv" "%~dp0..\" >nul 2>&1
-    if %errorlevel% equ 0 (
-        echo 已将原始 .flv 文件移动到上级目录: "%~dp0..\"
-    ) else (
-        echo 移动原始 .flv 文件到上级目录失败！错误代码: %errorlevel%
-        echo 请检查目标上级目录是否存在以及是否有写入权限。
-    )
+    move "*.flv" "%~dp0..\"
 ) else (
     echo 当前目录没有找到原始 .flv 文件可移动到上级目录。
 )
+if exist "%~dp0..\*.flv" ( echo 原始 .flv 文件已移动到 "%~dp0..\" )
 
 echo.
-echo 所有操作已完成！结果保存在 "%target_dir%\%datefolder%\" 文件夹中
-if exist "%~dp0..\*.flv" ( echo 原始 .flv 文件已移动到 "%~dp0..\" )
+echo 所有操作已完成！
 endlocal
 exit
