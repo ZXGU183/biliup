@@ -25,7 +25,7 @@ ds_update.log*
 *.egg-info
 dist/
 build/
-cover/
+!cover/
 cache/
 
 *.back
@@ -34,13 +34,14 @@ archive.txt
 /node_modules
 watch_process.pid
 biliup/**/public
+public/CHANGELOG.html
 *.xml
-!package-lock.json
+package-lock.json
 qrcode.png
 *.log
 /*.ts
 /biliup/stream-gears/
-data/
+!data/
 .next
 out
 downloads/
