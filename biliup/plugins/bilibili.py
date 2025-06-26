@@ -498,8 +498,16 @@ class Bililive(DownloadBase):
     # New: Web-side QR code login methods
     async def get_web_qrcode_info(self):
         """获取 Web 端扫码登录的二维码信息"""
+        headers = {
+            'User-Agent': self.fake_headers.get('user-agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36'),
+            'Referer': f"{PASSPORT_API}/",
+            'Origin': PASSPORT_API,
+        }
         try:
-            response = await self.bili_web_qrcode_session.get(f"{PASSPORT_API}/x/passport-login/web/qrcode/generate")
+            response = await self.bili_web_qrcode_session.get(
+                f"{PASSPORT_API}/x/passport-login/web/qrcode/generate",
+                headers=headers
+            )
             response.raise_for_status()
             data = response.json()
             if data['code'] == 0:
@@ -516,8 +524,14 @@ class Bililive(DownloadBase):
 
     async def poll_web_qrcode_status(self, qrcode_key: str):
         """轮询 Web 端扫码登录状态"""
+        headers = {
+            'User-Agent': self.fake_headers.get('user-agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36'),
+            'Referer': f"{PASSPORT_API}/",
+            'Origin': PASSPORT_API,
+        }
         response = await self.bili_web_qrcode_session.get(
             f"{PASSPORT_API}/x/passport-login/web/qrcode/poll?qrcode_key={qrcode_key}"
+            headers=headers
         )
         response.raise_for_status()
         data = response.json()
