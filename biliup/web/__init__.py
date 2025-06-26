@@ -112,9 +112,9 @@ async def cookie_login(request):
     if config.data.get("toml"):
         print("trying to login by cookie")
         try:
-            # stream_gears.login_by_cookies() # Removed
-            # If stream_gears.login_by_cookies() is still needed for other purposes,
-            # it should be called here. For Bilibili login, we're using our own logic.
+            # The original call to stream_gears.login_by_cookies() was here.
+            # It's removed to avoid dependency, but an empty try block is a syntax error.
+            pass
         except Exception as e:
             return web.HTTPBadRequest(text="login failed" + str(e))
     else:
