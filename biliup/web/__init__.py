@@ -157,11 +157,11 @@ def check_similar_remark(json_data):
 @routes.get('/v1/get_qrcode')
 async def qrcode_get(request):
     try:
-        # Use TV-side QR code API
-        qrcode_info = await bililive_instance.get_tv_qrcode_info()
-        # TV API returns 'auth_code' which is used as 'qrcode_key' for polling
-        r = {"data": {"url": qrcode_info["data"]["url"], "qrcode_key": qrcode_info["data"]["auth_code"]}}
-        logger.info(f"Generated TV QR code URL: {r['data']['url']}")
+        # r = eval(stream_gears.get_qrcode()) # Removed
+        qrcode_info = await bililive_instance.get_web_qrcode_info()
+        # Frontend expects 'url' and 'qrcode_key' inside 'data'
+        r = {"data": {"url": qrcode_info["url"], "qrcode_key": qrcode_info["qrcode_key"]}}
+        logger.info(f"Generated QR code URL: {r['data']['url']}")
     except Exception as e:
         logger.exception("get qrcode failed")
         return web.HTTPBadRequest(text=f"get qrcode failed: {e}")

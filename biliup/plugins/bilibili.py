@@ -20,10 +20,7 @@ from biliup.engine.download import DownloadBase
 BILIBILI_API = "https://api.bilibili.com"
 BILILIVE_API = "https://api.live.bilibili.com"
 STREAM_NAME_REGEXP = r"/live-bvc/\d+/(live_[^/\.]+)"
-PASSPORT_WEB_API = "https://passport.bilibili.com" # Web端登录API
-PASSPORT_TV_API = "http://passport.bilibili.com" # TV端登录API
-TV_APP_KEY = "4409e2ce8ffd12b8" # TV端登录AppKey
-TV_APP_SECRET = "59b43e04ad6965f34319062b478f83dd" # TV端登录AppSecret
+PASSPORT_API = "https://passport.bilibili.com" # New: Bilibili login API base URL
 WBI_WEB_LOCATION = "444.8"
 
 @Plugin.download(regexp=r'https?://(b23\.tv|live\.bilibili\.com)')
@@ -498,17 +495,17 @@ class Bililive(DownloadBase):
         self.__cookies.update(await (bililive_utils.get_risk_cookies(self.__cookies, self.__login_mid)))
         # print(self.__cookies)
 
-    # Web-side QR code login methods (Deprecated for current use case, but kept for reference)
-    async def get_web_qrcode_info_deprecated(self):
+    # New: Web-side QR code login methods
+    async def get_web_qrcode_info(self):
         """获取 Web 端扫码登录的二维码信息"""
         headers = {
             'User-Agent': self.fake_headers.get('user-agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36'),
-            'Referer': f"{PASSPORT_WEB_API}/",
-            'Origin': PASSPORT_WEB_API,
+            'Referer': f"{PASSPORT_API}/",
+            'Origin': PASSPORT_API,
         }
         try:
             response = await self.bili_web_qrcode_session.get(
-                f"{PASSPORT_WEB_API}/x/passport-login/web/qrcode/generate",
+                f"{PASSPORT_API}/x/passport-login/web/qrcode/generate",
                 headers=headers
             )
             response.raise_for_status()
@@ -516,70 +513,30 @@ class Bililive(DownloadBase):
             if data['code'] == 0:
                 return data['data'] # 包含 url, qrcode_key, expire_time
             else:
-                msg = data.get('message', 'Unknown error')
-                logger.error(f"Failed to get Web QR code: {msg}")
-                raise Exception(f"Failed to get Web QR code: {msg}")
+                logger.error(f"Failed to get QR code: {data.get('message', 'Unknown error')}")
+                raise Exception(f"Failed to get QR code: {data.get('message', 'Unknown error')}")
         except RequestError as e:
-            logger.error(f"Network error getting Web QR code: {e}")
+            logger.error(f"Network error getting QR code: {e}")
             raise
         except Exception as e:
-            logger.error(f"Error getting Web QR code info: {e}")
+            logger.error(f"Error getting QR code info: {e}")
             raise
 
-    async def poll_web_qrcode_status_deprecated(self, qrcode_key: str):
+    async def poll_web_qrcode_status(self, qrcode_key: str):
         """轮询 Web 端扫码登录状态"""
         headers = {
             'User-Agent': self.fake_headers.get('user-agent', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36'),
-            'Referer': f"{PASSPORT_WEB_API}/",
-            'Origin': PASSPORT_WEB_API,
+            'Referer': f"{PASSPORT_API}/",
+            'Origin': PASSPORT_API,
         }
         response = await self.bili_web_qrcode_session.get(
-            f"{PASSPORT_WEB_API}/x/passport-login/web/qrcode/poll?qrcode_key={qrcode_key}"
+            f"{PASSPORT_API}/x/passport-login/web/qrcode/poll?qrcode_key={qrcode_key}"
             , headers=headers
         )
         response.raise_for_status()
         data = response.json()
         # 返回的数据包含 code, message, data (data 包含 url_parameters, refresh_token, cookie_info 等)
         return data
-
-    # New: TV-side QR code login methods
-    async def get_tv_qrcode_info(self):
-        """获取 TV 端扫码登录的二维码信息"""
-        params = {
-            "appkey": TV_APP_KEY,
-            "local_id": "0",
-            "ts": int(time.time()),
-        }
-        params["sign"] = hashlib.md5(
-            f"{urllib.parse.urlencode(params)}{TV_APP_SECRET}".encode()).hexdigest()
-        response = await self.bili_web_qrcode_session.post(
-            f"{PASSPORT_TV_API}/x/passport-tv-login/qrcode/auth_code", data=params, timeout=5
-        )
-        response.raise_for_status()
-        r = response.json()
-        if r and r["code"] == 0:
-            return r
-        else:
-            msg = r.get('message', 'Unknown error')
-            logger.error(f"Failed to get TV QR code: {msg}")
-            raise Exception(f"Failed to get TV QR code: {msg}")
-
-    async def poll_tv_qrcode_status(self, auth_code: str):
-        """轮询 TV 端扫码登录状态"""
-        params = {
-            "appkey": TV_APP_KEY,
-            "auth_code": auth_code,
-            "local_id": "0",
-            "ts": int(time.time()),
-        }
-        params["sign"] = hashlib.md5(
-            f"{urllib.parse.urlencode(params)}{TV_APP_SECRET}".encode()).hexdigest()
-        response = await self.bili_web_qrcode_session.post(
-            f"{PASSPORT_TV_API}/x/passport-tv-login/qrcode/poll", data=params, timeout=5
-        )
-        response.raise_for_status()
-        r = response.json()
-        return r
 
 class BililiveUtils:
     def __init__(self):
