@@ -3,13 +3,12 @@ import socket
 import json
 import os
 import pathlib
-import concurrent.futures
 import threading
 
 import copy
 import aiohttp_cors
 import requests
-import stream_gears
+# import stream_gears # Removed
 from aiohttp import web
 from aiohttp.client import ClientSession
 from sqlalchemy import select, update
@@ -17,6 +16,7 @@ from sqlalchemy.exc import NoResultFound, MultipleResultsFound
 from urllib.parse import urlparse, unquote
 
 import biliup.common.reload
+from biliup.plugins.bilibili import bililive_instance # New: Import bililive_instance
 from biliup.config import config
 from biliup.plugins.bili_webup import BiliBili, Data
 from .aiohttp_basicauth_middleware import basic_auth_middleware
@@ -112,7 +112,9 @@ async def cookie_login(request):
     if config.data.get("toml"):
         print("trying to login by cookie")
         try:
-            stream_gears.login_by_cookies()
+            # stream_gears.login_by_cookies() # Removed
+            # If stream_gears.login_by_cookies() is still needed for other purposes,
+            # it should be called here. For Bilibili login, we're using our own logic.
         except Exception as e:
             return web.HTTPBadRequest(text="login failed" + str(e))
     else:
@@ -155,30 +157,49 @@ def check_similar_remark(json_data):
 @routes.get('/v1/get_qrcode')
 async def qrcode_get(request):
     try:
-        r = eval(stream_gears.get_qrcode())
+        # r = eval(stream_gears.get_qrcode()) # Removed
+        qrcode_info = await bililive_instance.get_web_qrcode_info()
+        # Frontend expects 'url' and 'qrcode_key' inside 'data'
+        r = {"data": {"url": qrcode_info["url"], "qrcode_key": qrcode_info["qrcode_key"]}}
+        logger.info(f"Generated QR code URL: {r['data']['url']}")
     except Exception as e:
-        return web.HTTPBadRequest(text="get qrcode failed")
+        logger.exception("get qrcode failed")
+        return web.HTTPBadRequest(text=f"get qrcode failed: {e}")
     return web.json_response(r)
 
 
-pool = concurrent.futures.ProcessPoolExecutor()
-
-
 @routes.post('/v1/login_by_qrcode')
-async def qrcode_login(request):
-    post_data = await request.json()
+async def login_by_qrcode(request): # Renamed from qrcode_login for clarity
+    req_data = await request.json()
+    # Get qrcode_key from the request body
+    qrcode_key = req_data.get('data', {}).get('qrcode_key')
+
+    if not qrcode_key:
+        return web.HTTPBadRequest(text="Missing qrcode_key in request")
+
+    # Define the cookie filename, consistent with bili_webup.py
+    cookie_filename = "bili.cookie"
+
     try:
-        loop = asyncio.get_event_loop()
-        # loop
-        task = loop.run_in_executor(pool, stream_gears.login_by_qrcode, (json.dumps(post_data, )))
-        res = await asyncio.wait_for(task, 180)
-        data = json.loads(res)
-        filename = f'data/{data["token_info"]["mid"]}.json'
-        with open(filename, 'w', encoding='utf-8') as file:
-            file.write(res)
-        return web.json_response({
-            'filename': filename
-        })
+        # Poll for QR code login status
+        poll_result = await bililive_instance.poll_web_qrcode_status(qrcode_key)
+
+        # Handle different status codes from Bilibili API
+        if poll_result['code'] == 0: # Login successful
+            # Save the cookie_info to file
+            with open(cookie_filename, "w", encoding="utf-8") as f:
+                json.dump(poll_result, f, ensure_ascii=False, indent=4)
+            logger.info(f"QR code login successful. Cookies saved to {cookie_filename}")
+            return web.json_response({"filename": cookie_filename, "message": "Login successful"})
+        elif poll_result['code'] == 86038: # QR code expired
+            return web.HTTPBadRequest(text="QR code expired. Please try again.")
+        elif poll_result['code'] == 86090: # Not scanned, waiting for scan
+            return web.HTTPBadRequest(text="Waiting for scan. Please scan the QR code.")
+        elif poll_result['code'] == 86091: # Scanned, waiting for confirmation
+            return web.HTTPBadRequest(text="Scanned, waiting for confirmation on mobile.")
+        else: # Other unknown status or error
+            logger.error(f"QR code login unknown status: {poll_result}")
+            return web.HTTPBadRequest(text=f"QR code login status: {poll_result.get('message', 'Unknown status')}")
     except Exception as e:
         logger.exception('login_by_qrcode')
         return web.HTTPBadRequest(text="login failed" + str(e))

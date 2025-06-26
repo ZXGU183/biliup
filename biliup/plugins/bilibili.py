@@ -20,6 +20,7 @@ from biliup.engine.download import DownloadBase
 BILIBILI_API = "https://api.bilibili.com"
 BILILIVE_API = "https://api.live.bilibili.com"
 STREAM_NAME_REGEXP = r"/live-bvc/\d+/(live_[^/\.]+)"
+PASSPORT_API = "https://passport.bilibili.com" # New: Bilibili login API base URL
 WBI_WEB_LOCATION = "444.8"
 
 @Plugin.download(regexp=r'https?://(b23\.tv|live\.bilibili\.com)')
@@ -49,6 +50,8 @@ class Bililive(DownloadBase):
         self.bili_normalize_cn204: bool = config.get('bili_normalize_cn204', False)
         self.cn01_sids: List[str] = config.get('bili_replace_cn01', [])
         self.bili_cdn_fallback: bool = config.get('bili_cdn_fallback', False)
+        # New: Use the existing httpx client for QR code login requests
+        self.bili_web_qrcode_session = client
 
     async def acheck_stream(self, is_check=False):
 
@@ -492,6 +495,35 @@ class Bililive(DownloadBase):
         self.__cookies.update(await (bililive_utils.get_risk_cookies(self.__cookies, self.__login_mid)))
         # print(self.__cookies)
 
+    # New: Web-side QR code login methods
+    async def get_web_qrcode_info(self):
+        """获取 Web 端扫码登录的二维码信息"""
+        try:
+            response = await self.bili_web_qrcode_session.get(f"{PASSPORT_API}/x/passport-login/web/qrcode/generate")
+            response.raise_for_status()
+            data = response.json()
+            if data['code'] == 0:
+                return data['data'] # 包含 url, qrcode_key, expire_time
+            else:
+                logger.error(f"Failed to get QR code: {data.get('message', 'Unknown error')}")
+                raise Exception(f"Failed to get QR code: {data.get('message', 'Unknown error')}")
+        except RequestError as e:
+            logger.error(f"Network error getting QR code: {e}")
+            raise
+        except Exception as e:
+            logger.error(f"Error getting QR code info: {e}")
+            raise
+
+    async def poll_web_qrcode_status(self, qrcode_key: str):
+        """轮询 Web 端扫码登录状态"""
+        response = await self.bili_web_qrcode_session.get(
+            f"{PASSPORT_API}/x/passport-login/web/qrcode/poll?qrcode_key={qrcode_key}"
+        )
+        response.raise_for_status()
+        data = response.json()
+        # 返回的数据包含 code, message, data (data 包含 url_parameters, refresh_token, cookie_info 等)
+        return data
+
 class BililiveUtils:
     def __init__(self):
         # _cookie_store: {mid: {"cookies": dict, "expires": timestamp}}
@@ -658,6 +690,8 @@ def hmac_sha256(key: str, data: str) -> str:
     return hmac.new(
         key.encode('utf-8'), data.encode('utf-8'), hashlib.sha256
     ).hexdigest()
+# New: Instantiate Bililive class for use in other modules
+bililive_instance = Bililive(None, None) # Parameters are placeholders, as it's used for API calls
 
 bililive_utils = BililiveUtils()
 
