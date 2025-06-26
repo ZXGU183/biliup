@@ -531,7 +531,7 @@ class Bililive(DownloadBase):
         }
         response = await self.bili_web_qrcode_session.get(
             f"{PASSPORT_API}/x/passport-login/web/qrcode/poll?qrcode_key={qrcode_key}"
-            , headers=headers
+            headers=headers
         )
         response.raise_for_status()
         data = response.json()
