@@ -7,10 +7,15 @@
 - 🔧已修复的问题
 - ⚠️需要注意的更新信息
 
+## 0.4.100.b3
+
+- 🔧fix(Danmaku.bilibili): 修复B站弹幕连接风控，来自[xxxxuanran](https://github.com/biliup/biliup/pull/1312)
+
+[>在 Github 查看此版本](https://github.com/ZXGU183/biliup/releases/tag/v0.4.100.b3)
+
 ## 0.4.100.3a
 
 - [💡feat](https://github.com/biliup/biliup/pull/1321): 抖音弹幕录制：添加用户名、id、礼物弹幕的录制 [by](https://github.com/biliup/biliup/pull/1321) [@ruinmi](https://github.com/ruinmi/biliup/releases/tag/4.100.3)
-- ⚠️: 请使用 **Cookie 文本** 或[**biliup-rs**](https://biliup.github.io/biliup-rs)等方法添加账号， _由于官方上游仓库更新导致_ 投稿管理页面的扫码登录可能暂不可用，正在排查和解决此问题
 
 [>在 Github 查看此版本](https://github.com/ZXGU183/biliup/releases/tag/v0.4.100.3a)
 
