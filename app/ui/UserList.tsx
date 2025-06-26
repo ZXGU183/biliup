@@ -1,15 +1,23 @@
-import React, { useRef, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import {
+  fetcher,
+  LiveStreamerEntity,
+  proxy,
   requestDelete,
   sendRequest,
+  StudioEntity,
   User,
 } from '../lib/api-streamer'
+import useSWR from 'swr'
+import { useRouter } from 'next/router'
 import {
   Button,
   Form,
   List,
   Modal,
   Notification,
+  Radio,
+  RadioGroup,
   Row,
   SideSheet,
   Toast,
@@ -20,6 +28,7 @@ import { IconPlusCircle } from '@douyinfe/semi-icons'
 import { FormApi } from '@douyinfe/semi-ui/lib/es/form'
 import useSWRMutation from 'swr/mutation'
 import { useBiliUsers } from '../lib/use-streamers'
+import QRcode from '@/app/ui/QRcode'
 import { useWindowSize } from 'react-use';
 
 type UserListProps = {
@@ -99,6 +108,27 @@ const UserList: React.FC<UserListProps> = ({ onCancel, visible }) => {
     }
   }
   const api = useRef<FormApi>()
+  const [value, setValue] = useState()
+  const [panel, setPanel] = useState(<></>)
+  const onChange = (e: any) => {
+    setValue(e.target.value)
+    if (e.target.value === 2) {
+      setPanel(<QRcode onSuccess={addUser} />)
+    }
+    if (e.target.value === 1) {
+      setPanel(
+        <Form getFormApi={formApi => (api.current = formApi)}>
+          <Form.Input
+            field="value"
+            label="Cookie路径"
+            trigger="blur"
+            placeholder="cookies.json"
+            rules={[{ required: true }]}
+          />
+        </Form>
+      )
+    }
+  }
   return (
     <SideSheet
       title={<Typography.Title heading={4}>用户管理</Typography.Title>}
@@ -143,7 +173,7 @@ const UserList: React.FC<UserListProps> = ({ onCancel, visible }) => {
       />
 
       <Modal
-        title="添加 Bilibili 账号"
+        title="新建"
         visible={modalVisible}
         onOk={handleOk}
         style={{ width: 'min(600px, 90vw)' }}
@@ -151,6 +181,7 @@ const UserList: React.FC<UserListProps> = ({ onCancel, visible }) => {
         onCancel={handleCancel}
         closeOnEsc={true}
         confirmLoading={confirmLoading}
+        okButtonProps={{ disabled: value === 2 }}
         bodyStyle={{
           overflow: 'auto',
           maxHeight: 'calc(100vh - 320px)',
@@ -158,26 +189,13 @@ const UserList: React.FC<UserListProps> = ({ onCancel, visible }) => {
           paddingRight: 10,
         }}
       >
-        <Typography.Title heading={5}>通过 Cookie 文件添加</Typography.Title>
-        <Form getFormApi={formApi => (api.current = formApi)}>
-          <Form.Input
-            field="value"
-            label="Cookie 文件路径"
-            trigger="blur"
-            placeholder="例如: cookies.json 或 data/123456.json"
-            rules={[{ required: true, message: '必须填写 Cookie 文件路径' }]}
-          />
-        </Form>
-        <div style={{ marginTop: 24 }}>
-          <Typography.Title heading={5}>如何获取 Cookie 文件？</Typography.Title>
-          <Typography.Paragraph>
-            由于 Bilibili 登录接口变动频繁，内置的扫码登录功能已移除。
-            推荐使用官方维护的命令行工具 <Typography.Text strong>biliup-rs</Typography.Text> 来进行登录和获取 Cookie 文件。
-          </Typography.Paragraph>
-          <Button theme="light" type="secondary" onClick={() => window.open('https://biliup.github.io/biliup-rs/', '_blank')}>
-            查看 biliup-rs 官方文档
-          </Button>
-        </div>
+        <Row type="flex" justify="center">
+          <RadioGroup type="button" buttonSize="large" onChange={onChange} value={value}>
+            <Radio value={1}>cookie文件</Radio>
+            <Radio value={2}>扫码登录</Radio>
+          </RadioGroup>
+        </Row>
+        <Row>{panel}</Row>
       </Modal>
     </SideSheet>
   )
