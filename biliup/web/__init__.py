@@ -3,13 +3,12 @@ import socket
 import json
 import os
 import pathlib
-import concurrent.futures
 import threading
 
 import copy
 import aiohttp_cors
 import requests
-import stream_gears
+# import stream_gears # Removed
 from aiohttp import web
 from aiohttp.client import ClientSession
 from sqlalchemy import select, update
@@ -112,7 +111,9 @@ async def cookie_login(request):
     if config.data.get("toml"):
         print("trying to login by cookie")
         try:
-            stream_gears.login_by_cookies()
+            # The original call to stream_gears.login_by_cookies() was here.
+            # It's removed to avoid dependency, but an empty try block is a syntax error.
+            pass
         except Exception as e:
             return web.HTTPBadRequest(text="login failed" + str(e))
     else:
@@ -150,38 +151,6 @@ def check_similar_remark(json_data):
         ):
             return fname
     return None
-
-
-@routes.get('/v1/get_qrcode')
-async def qrcode_get(request):
-    try:
-        r = eval(stream_gears.get_qrcode())
-    except Exception as e:
-        return web.HTTPBadRequest(text="get qrcode failed")
-    return web.json_response(r)
-
-
-pool = concurrent.futures.ProcessPoolExecutor()
-
-
-@routes.post('/v1/login_by_qrcode')
-async def qrcode_login(request):
-    post_data = await request.json()
-    try:
-        loop = asyncio.get_event_loop()
-        # loop
-        task = loop.run_in_executor(pool, stream_gears.login_by_qrcode, (json.dumps(post_data, )))
-        res = await asyncio.wait_for(task, 180)
-        data = json.loads(res)
-        filename = f'data/{data["token_info"]["mid"]}.json'
-        with open(filename, 'w', encoding='utf-8') as file:
-            file.write(res)
-        return web.json_response({
-            'filename': filename
-        })
-    except Exception as e:
-        logger.exception('login_by_qrcode')
-        return web.HTTPBadRequest(text="login failed" + str(e))
 
 
 async def pre_archive(request):
