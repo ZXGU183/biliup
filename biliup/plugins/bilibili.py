@@ -3,6 +3,7 @@ import json
 import re
 import math
 import random
+import urllib.parse # Add this line
 import hmac
 import hashlib
 
