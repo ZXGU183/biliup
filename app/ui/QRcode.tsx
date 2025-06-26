@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import { fetcher, sendRequest } from '@/app/lib/api-streamer'
 import { QRCodeSVG } from 'qrcode.react'
-import { fetcher } from '@/app/lib/api-streamer'
 import { Notification, Spin, Typography } from '@douyinfe/semi-ui'
 
 type QrcodeProps = {
@@ -9,7 +9,6 @@ type QrcodeProps = {
 
 const Qrcode: React.FC<QrcodeProps> = ({ onSuccess }) => {
   const [url, setUrl] = useState('')
-  const [qrData, setQrData] = useState<any>(null)
   useEffect(() => {
     // Create an instance.
     const controller = new AbortController()
@@ -19,39 +18,25 @@ const Qrcode: React.FC<QrcodeProps> = ({ onSuccess }) => {
       console.log('aborted!')
     })
     ;(async () => {
-      const initialQrData = await fetcher('/v1/get_qrcode', undefined)
-      setUrl(initialQrData['data']['url'])
-      setQrData(initialQrData)
-      console.log(initialQrData['data']['url'])
-
-      const poll = async () => {
-        if (signal.aborted) return
-
-        try {
-          const res = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER ?? ''}/v1/login_by_qrcode`, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(initialQrData),
-            signal: signal,
-          })
-
-          if (res.status === 200) {
-            const data = await res.json()
-            onSuccess(data['filename']) // Call onSuccess to add user to the list
-            return // Stop polling on success
-          }
-
-          // If not successful, continue polling
-          setTimeout(poll, 2000) // Poll every 2 seconds
-        } catch (e: any) {
-          if (e.name !== 'AbortError') {
-            throw e
-          }
-        }
+      let qrData = await fetcher('/v1/get_qrcode', undefined)
+      setUrl(qrData['data']['url'])
+      console.log(qrData['data']['url'])
+      let res = await fetch(`${process.env.NEXT_PUBLIC_API_SERVER ?? ''}/v1/login_by_qrcode`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(qrData),
+        signal: signal,
+      })
+      if (!(res.status >= 200 && res.status < 300)) {
+        throw new Error(await res.text())
       }
-      await poll()
+      const data = await res.json()
+      if (!res.ok) {
+        throw new Error(data.message)
+      }
+      onSuccess(data['filename'])
     })().catch(e => {
       console.log(e)
       Notification.error({
@@ -64,7 +49,7 @@ const Qrcode: React.FC<QrcodeProps> = ({ onSuccess }) => {
     return () => {
       controller.abort('qrcode exit')
     }
-  }, [onSuccess]) // No dependency on qrData to avoid re-triggering
+  }, [onSuccess])
   if (url === '') {
     return <Spin />
   }

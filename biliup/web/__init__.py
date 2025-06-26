@@ -188,7 +188,7 @@ async def login_by_qrcode(request): # Renamed from qrcode_login for clarity
         if poll_result['code'] == 0: # Login successful
             # Save the cookie_info to file
             with open(cookie_filename, "w", encoding="utf-8") as f:
-                json.dump(poll_result['data'], f, ensure_ascii=False, indent=4)
+                json.dump(poll_result, f, ensure_ascii=False, indent=4)
             logger.info(f"QR code login successful. Cookies saved to {cookie_filename}")
             return web.json_response({"filename": cookie_filename, "message": "Login successful"})
         elif poll_result['code'] == 86038: # QR code expired
