@@ -125,12 +125,14 @@ export default function Home() {
         <nav
           style={{
             display: 'flex',
+            height: '57px', // 应用标准高度 （↓与Semi Nav的padding保持一致或接近
             paddingLeft: '25px',
             paddingRight: '25px',
             alignItems: 'center',
             justifyContent: 'space-between',
             flexWrap: 'wrap',
-            boxShadow: '0 1px 2px 0 rgb(0 0 0 / 0.05)',
+            // boxShadow: '0 1px 2px 0 rgb(0 0 0 / 0.05)', // 移除或替换为borderBottom
+            borderBottom: '1px solid var(--semi-color-border)', // 统一边框样式
           }}
         >
           <div
