@@ -296,7 +296,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               </Nav.Footer>
             </Nav>
           </Sider>
-          <SeLayout style={{ height: '100vh' }}>{children}</SeLayout>
+          <SeLayout style={{
+            height: '100vh',
+            // 移除 paddingTop，让子页面自行处理Header下的Content间距
+            overflowY: 'auto' // 如果内容可能超出视口高度，确保可以滚动。这个可以保留。
+          }}>{children}</SeLayout>
         </SeLayout>
       </body>
     </html>

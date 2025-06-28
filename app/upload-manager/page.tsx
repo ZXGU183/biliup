@@ -124,12 +124,14 @@ export default function Union() {
         <nav
           style={{
             display: 'flex',
-            paddingLeft: '25px',
-            paddingRight: '25px',
+            height: '56px', // 应用标准高度
+            paddingLeft: '24px', // 与Semi Nav的padding保持一致或接近
+            paddingRight: '24px',
             alignItems: 'center',
             justifyContent: 'space-between',
             flexWrap: 'wrap',
-            boxShadow: '0 1px 2px 0 rgb(0 0 0 / 0.05)',
+            // boxShadow: '0 1px 2px 0 rgb(0 0 0 / 0.05)', // 移除或替换为borderBottom
+            borderBottom: '1px solid var(--semi-color-border)', // 统一边框样式
           }}
         >
           <div
