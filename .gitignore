@@ -1,5 +1,6 @@
 .idea
 .vscode
+.cursor
 .gitattributes
 *.pyc
 *.flv
@@ -34,7 +35,7 @@ archive.txt
 watch_process.pid
 biliup/**/public
 *.xml
-!package-lock.json
+package-lock.json
 qrcode.png
 *.log
 /*.ts

@@ -24,7 +24,7 @@ jobs:
         pip install .
     - name: Build
       run: |
-        npm run build 
+        npm run build
         pyinstaller biliup.spec
     # Optionally verify that it works (provided that it does not need user interaction)
     #- run: ./dist/your-code/your-code
