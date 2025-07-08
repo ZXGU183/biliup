@@ -1,0 +1,74 @@
+# Git and GitHub
+.git/
+.github/
+.gitignore
+.gitattributes
+.gitmodules
+
+# Docker
+Dockerfile
+DockerfileLocal
+docker-compose.yml
+biliup*.tar
+
+# Python build artifacts and environment
+__pycache__/
+.pytest_cache/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+*.egg-info/
+dist/
+build/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+biliup.spec
+
+# Node.js build artifacts
+node_modules/
+.next/
+out/
+tmp/npm_cache/
+npm-debug.log
+
+!scripts/convert-changelog.js
+!CHANGELOG.md
+
+# IDE / OS specific
+.vscode/
+.cursor/
+.idea/
+*.log
+.DS_Store
+
+# Project configuration not needed in the image
+docker-compose.yml
+.env.development
+.env.production
+
+# 测试文件
+tests/
+coverage/
+
+# 构建产物
+*.tar.gz
+*.whl
+
+# 源映射文件
+*.css.map
+*.js.map
+
+# 临时文件
+*.tmp
+*.swp
+*.bak
+
+# 保留但会被Dockerfile显式处理的文件
+# !app/
+# !public/
+# !next.config.js
+# !package*.json
