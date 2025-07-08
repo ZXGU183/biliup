@@ -1,0 +1,127 @@
+# 使用ARG定义可配置的构建参数，增加灵活性
+ARG NODE_VERSION=lts
+ARG PYTHON_VERSION=3.12
+
+# =================================================================
+# Stage 1: Build Web UI (前端构建阶段)
+# =================================================================
+FROM node:${NODE_VERSION}-slim AS webui
+
+WORKDIR /biliuplocal
+
+ENV LANG=C.UTF-8 \
+    LANGUAGE=C.UTF-8 \
+    LC_ALL=C.UTF-8 \
+    TZ=Asia/Shanghai \
+    DEBIAN_FRONTEND=noninteractive
+
+# 分两步解决证书问题
+RUN \
+    # 步骤 1: 使用 HTTP 镜像安装 ca-certificates
+    echo "deb http://mirrors.aliyun.com/debian bookworm main" > /etc/apt/sources.list && \
+    apt-get update && \
+    apt-get install -y --no-install-recommends ca-certificates && \
+    \
+    # 步骤 2: 恢复使用 HTTPS 镜像，并安装其他依赖
+    sed -i 's#http://deb.debian.org#https://mirrors.aliyun.com#g' /etc/apt/sources.list.d/debian.sources && \
+    # 清理掉第一步的临时配置
+    rm /etc/apt/sources.list && \
+    apt-get update && \
+    apt-get install -y --no-install-recommends git && \
+    rm -rf /var/lib/apt/lists/*
+
+# 配置 git 和 npm 使用国内镜像
+RUN \
+    git config --global url."https://github.geekery.cn/https://github.com/".insteadOf "https://github.com/" && \
+    npm config set registry https://registry.npmmirror.com/
+
+# 优化文件复制顺序，最大化利用Docker缓存
+COPY package*.json ./
+# 同时复制CHANGELOG.md，因为前端构建执行的脚本依赖它
+COPY scripts/ ./scripts/
+COPY CHANGELOG.md ./
+RUN npm install
+
+COPY app ./app
+COPY public ./public
+COPY next.config.js ./
+COPY tsconfig.json ./
+
+# 创建构建脚本所需的目标目录并执行构建
+RUN \
+    mkdir -p ./biliup/web/public && \
+    npm run build && \
+    npm cache clean --force
+
+# =================================================================
+# Stage 2: Final Application (最终应用阶段)
+# =================================================================
+FROM python:${PYTHON_VERSION}-slim AS biliup
+
+WORKDIR /biliuplocal
+
+ENV LANG=C.UTF-8 \
+    LANGUAGE=C.UTF-8 \
+    LC_ALL=C.UTF-8 \
+    TZ=Asia/Shanghai \
+    DEBIAN_FRONTEND=noninteractive
+
+EXPOSE 19159/tcp
+VOLUME /opt
+
+RUN groupadd --system --gid 1000 appuser && \
+    useradd --system --uid 1000 --gid 1000 appuser
+
+COPY pyproject.toml setup.py README.md ./
+COPY biliup ./biliup/
+
+# 优化APT、FFmpeg和Python依赖的安装过程
+RUN \
+    # 步骤 1: 使用 HTTP 镜像安装 ca-certificates
+    echo "deb http://mirrors.aliyun.com/debian bookworm main" > /etc/apt/sources.list && \
+    apt-get update && \
+    apt-get install -y --no-install-recommends ca-certificates && \
+    \
+    # 步骤 2: 切换回 HTTPS，并安装所有构建依赖
+    sed -i 's#http://deb.debian.org#https://mirrors.aliyun.com#g' /etc/apt/sources.list.d/debian.sources && \
+    rm /etc/apt/sources.list && \
+    apt-get update && \
+    apt-get install -y --no-install-recommends wget xz-utils g++ && \
+    \
+    # 步骤 3: 安装 FFmpeg
+    arch="$(dpkg --print-architecture)"; \
+    case "$arch" in \
+        'amd64') file_name="ffmpeg-master-latest-linux64-gpl.tar.xz"; ;; \
+        'arm64') file_name="ffmpeg-master-latest-linuxarm64-gpl.tar.xz"; ;; \
+        *) \
+           echo "Unsupported architecture: $arch. Installing FFmpeg from APT." >&2; \
+           apt-get install -y --no-install-recommends ffmpeg; \
+           USE_APT_FFMPEG=true; \
+           ;; \
+    esac; \
+    if [ -z "$USE_APT_FFMPEG" ]; then \
+        wget -t 2 -T 30 -O ffmpeg.tar.xz \
+            "https://gh-proxy.com/https://github.com/yt-dlp/FFmpeg-Builds/releases/download/latest/${file_name}" || \
+        wget -t 2 -T 30 -O ffmpeg.tar.xz \
+            "https://github.geekery.cn/https://github.com/yt-dlp/FFmpeg-Builds/releases/download/latest/${file_name}" || \
+        (echo "All mirrors failed for FFmpeg download." >&2 && exit 1); \
+        tar -xJf ffmpeg.tar.xz -C /usr/local --strip-components=1 && \
+        rm -rf /usr/local/doc /usr/local/man /usr/local/bin/ffplay && \
+        rm -f ffmpeg.tar.xz && \
+        chmod a+x /usr/local/bin/*; \
+    fi; \
+    \
+    # 步骤 4: 安装 Python 依赖
+    pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple && \
+    pip install --no-cache-dir -e . && \
+    \
+    # 步骤 5: 清理所有构建时依赖和缓存
+    apt-get purge -y --auto-remove g++ wget xz-utils && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# 从前端构建阶段复制静态文件
+COPY --from=webui /biliuplocal/biliup/web/public/ ./biliup/web/public/
+
+WORKDIR /opt
+ENTRYPOINT ["biliup"]
