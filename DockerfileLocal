@@ -15,30 +15,39 @@ ENV LANG=C.UTF-8 \
     TZ=Asia/Shanghai \
     DEBIAN_FRONTEND=noninteractive
 
-# 分两步解决证书问题
+# --- APT 源配置 ---
+# 对于中国大陆用户，使用华为云镜像可以显著加速。
+# 对于非中国大陆用户，请注释掉下面的 【华为云镜像】 代码块，并取消注释 【Debian 官方源】 代码块。
+#
+# [华为云镜像] - 适用于中国大陆用户
 RUN \
-    # 步骤 1: 使用 HTTP 镜像安装 ca-certificates
-    echo "deb http://mirrors.aliyun.com/debian bookworm main" > /etc/apt/sources.list && \
+    echo "deb http://repo.huaweicloud.com/debian bookworm main" > /etc/apt/sources.list && \
     apt-get update && \
     apt-get install -y --no-install-recommends ca-certificates && \
-    \
-    # 步骤 2: 恢复使用 HTTPS 镜像，并安装其他依赖
-    sed -i 's#http://deb.debian.org#https://mirrors.aliyun.com#g' /etc/apt/sources.list.d/debian.sources && \
-    # 清理掉第一步的临时配置
+    sed -i 's#http://deb.debian.org#https://repo.huaweicloud.com#g' /etc/apt/sources.list.d/debian.sources && \
     rm /etc/apt/sources.list && \
     apt-get update && \
     apt-get install -y --no-install-recommends git && \
     rm -rf /var/lib/apt/lists/*
+#
+# [Debian 官方源] - 适用于非中国大陆用户
+# RUN apt-get update && \
+#     apt-get install -y --no-install-recommends git ca-certificates && \
+#     rm -rf /var/lib/apt/lists/*
 
-# 配置 git 和 npm 使用国内镜像
+
+# --- Git 和 NPM 加速配置 ---
+# 对于中国大陆用户，此配置可以加速依赖下载。
+# 对于非中国大陆用户，可以注释掉整个 RUN 代码块。
 RUN \
     git config --global url."https://github.geekery.cn/https://github.com/".insteadOf "https://github.com/" && \
     npm config set registry https://registry.npmmirror.com/
 
+
 # 优化文件复制顺序，最大化利用Docker缓存
 COPY package*.json ./
-# 同时复制CHANGELOG.md，因为前端构建执行的脚本依赖它
 COPY scripts/ ./scripts/
+# 同时复制CHANGELOG.md，因为前端构建执行的脚本依赖它
 COPY CHANGELOG.md ./
 RUN npm install
 
@@ -69,27 +78,31 @@ ENV LANG=C.UTF-8 \
 EXPOSE 19159/tcp
 VOLUME /opt
 
-RUN groupadd --system --gid 1000 appuser && \
-    useradd --system --uid 1000 --gid 1000 appuser
-
 COPY pyproject.toml setup.py README.md ./
 COPY biliup ./biliup/
 
 # 优化APT、FFmpeg和Python依赖的安装过程
 RUN \
-    # 步骤 1: 使用 HTTP 镜像安装 ca-certificates
-    echo "deb http://mirrors.aliyun.com/debian bookworm main" > /etc/apt/sources.list && \
+    # --- APT 源配置 ---
+    # 对于中国大陆用户，使用华为云镜像可以显著加速。
+    # 对于非中国大陆用户，请注释掉 【华为云镜像】 部分，并取消注释 【Debian 官方源】 部分。
+    #
+    # [华为云镜像] - 适用于中国大陆用户
+    echo "deb http://repo.huaweicloud.com/debian bookworm main" > /etc/apt/sources.list && \
     apt-get update && \
     apt-get install -y --no-install-recommends ca-certificates && \
-    \
-    # 步骤 2: 切换回 HTTPS，并安装所有构建依赖
-    sed -i 's#http://deb.debian.org#https://mirrors.aliyun.com#g' /etc/apt/sources.list.d/debian.sources && \
+    sed -i 's#http://deb.debian.org#https://repo.huaweicloud.com#g' /etc/apt/sources.list.d/debian.sources && \
     rm /etc/apt/sources.list && \
     apt-get update && \
-    apt-get install -y --no-install-recommends wget xz-utils g++ && \
+    apt-get install -y --no-install-recommends wget xz-utils g++ ; \
+    #
+    # [Debian 官方源] - 适用于非中国大陆用户
+    # apt-get update && \
+    # apt-get install -y --no-install-recommends ca-certificates wget xz-utils g++ ; \
     \
-    # 步骤 3: 安装 FFmpeg
+    # --- FFmpeg 安装 ---
     arch="$(dpkg --print-architecture)"; \
+    USE_APT_FFMPEG=false; \
     case "$arch" in \
         'amd64') file_name="ffmpeg-master-latest-linux64-gpl.tar.xz"; ;; \
         'arm64') file_name="ffmpeg-master-latest-linuxarm64-gpl.tar.xz"; ;; \
@@ -99,23 +112,31 @@ RUN \
            USE_APT_FFMPEG=true; \
            ;; \
     esac; \
-    if [ -z "$USE_APT_FFMPEG" ]; then \
-        wget -t 2 -T 30 -O ffmpeg.tar.xz \
-            "https://gh-proxy.com/https://github.com/yt-dlp/FFmpeg-Builds/releases/download/latest/${file_name}" || \
-        wget -t 2 -T 30 -O ffmpeg.tar.xz \
-            "https://github.geekery.cn/https://github.com/yt-dlp/FFmpeg-Builds/releases/download/latest/${file_name}" || \
-        (echo "All mirrors failed for FFmpeg download." >&2 && exit 1); \
+    if [ "$USE_APT_FFMPEG" = false ]; then \
+        # --- FFmpeg 下载加速 ---
+        # 对于中国大陆用户，使用 Github 代理可以加速下载。
+        # 对于非中国大陆用户，请注释掉 【代理下载】 行，并取消注释 【官方直接下载】 行。
+        #
+        # [代理下载] - 适用于中国大陆用户
+        FFMPEG_URL="https://github.geekery.cn/https://github.com/yt-dlp/FFmpeg-Builds/releases/download/latest/${file_name}"; \
+        #
+        # [官方直接下载] - 适用于非中国大陆用户
+        # FFMPEG_URL="https://github.com/yt-dlp/FFmpeg-Builds/releases/download/latest/${file_name}"; \
+        #
+        wget -t 2 -T 30 -O ffmpeg.tar.xz "$FFMPEG_URL" || (echo "FFmpeg download failed." >&2 && exit 1); \
         tar -xJf ffmpeg.tar.xz -C /usr/local --strip-components=1 && \
         rm -rf /usr/local/doc /usr/local/man /usr/local/bin/ffplay && \
         rm -f ffmpeg.tar.xz && \
         chmod a+x /usr/local/bin/*; \
     fi; \
     \
-    # 步骤 4: 安装 Python 依赖
-    pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple && \
+    # --- Python 依赖安装 ---
+    # 对于中国大陆用户，使用 PyPI 镜像可以加速。
+    # 对于非中国大陆用户，可以注释掉下面这行 `pip config`。
+    pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple; \
     pip install --no-cache-dir -e . && \
     \
-    # 步骤 5: 清理所有构建时依赖和缓存
+    # --- 清理所有构建时依赖和缓存 ---
     apt-get purge -y --auto-remove g++ wget xz-utils && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
