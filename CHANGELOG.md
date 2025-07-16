@@ -7,9 +7,15 @@
 - 🔧已修复的问题
 - ⚠️需要注意的更新信息
 
+## 0.4.101.0a
+
+- 🔧fix(Upload): bili_web 上传插件适配 biliup-rs 生成的 cookie file，stream-gears 上传接口默认修改为 app by [xxxxuanran](https://github.com/biliup/biliup/pull/1312) in [#1347](https://github.com/biliup/biliup/pull/1347)
+- 🔧修复B站弹幕问题 by [unknown-o](https://github.com/unknown-o) in [#1342](https://github.com/biliup/biliup/pull/1342)
+
 ## 0.4.100.b3
 
-- 🔧fix(Danmaku.bilibili): 修复B站弹幕连接风控，来自[xxxxuanran](https://github.com/biliup/biliup/pull/1312)
+- 🔧fix(Danmaku.bilibili): 适配B站弹幕连接风控策略，来自[xxxxuanran](https://github.com/biliup/biliup/pull/1312)
+- 🔧fix(Docker): 全局声明C.UTF-8字符编码以解决 [issue#1332](https://github.com/biliup/biliup/issues/1332) 提及的中文等字符乱码问题
 
 [>在 Github 查看此版本](https://github.com/ZXGU183/biliup/releases/tag/v0.4.100.b3)
 

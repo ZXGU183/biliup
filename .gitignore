@@ -10,6 +10,7 @@
 backup
 venv./
 .venv/
+.sqlx/
 .run/
 test/
 pdm.lock
@@ -37,10 +38,17 @@ watch_process.pid
 biliup/**/public
 public/CHANGELOG.html
 *.xml
+uv.lock
+Cargo.lock
+tauri-app\src-tauri\Cargo.lock
 package-lock.json
+tauri-app\package-lock.json
 qrcode.png
 *.log
+*.d.ts
+/*.d.ts
 /*.ts
+!tauri-app\vite.config.ts
 /biliup/stream-gears/
 data/
 .next
