@@ -180,6 +180,7 @@ export interface StudioEntity {
 	dynamic: string;
 	tags: string[];
 	dtime: number;
+	upload_webhook:string;
 	// interactive: number;
 	mission_id?: number;
 	dolby: number;
