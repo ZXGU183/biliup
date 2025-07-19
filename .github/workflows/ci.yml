@@ -18,6 +18,19 @@ on:
 permissions:
   contents: read
 
+# Define a reusable set of steps for building the frontend
+x-frontend-build-steps: &frontend-build-steps
+  - uses: actions/checkout@v4
+    with:
+      submodules: recursive
+  - uses: actions/setup-node@v3
+    with:
+      node-version: '20'
+  - name: Build frontend
+    run: |
+      npm install
+      npm run build
+
 jobs:
   linux:
     runs-on: ${{ matrix.platform.runner }}
@@ -37,16 +50,7 @@ jobs:
           - runner: ubuntu-22.04
             target: ppc64le
     steps:
-      - uses: actions/checkout@v4
-        with:
-          submodules: recursive
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '20'
-      - name: Build frontend
-        run: |
-          npm install
-          npm run build
+      - <<: *frontend-build-steps
       - uses: actions/setup-python@v5
         with:
           python-version: 3.x
@@ -84,16 +88,7 @@ jobs:
           - runner: ubuntu-22.04
             target: armv7
     steps:
-      - uses: actions/checkout@v4
-        with:
-          submodules: recursive
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '20'
-      - name: Build frontend
-        run: |
-          npm install
-          npm run build
+      - <<: *frontend-build-steps
       - uses: actions/setup-python@v5
         with:
           python-version: 3.x
@@ -127,16 +122,7 @@ jobs:
           - runner: windows-latest
             target: x86
     steps:
-      - uses: actions/checkout@v4
-        with:
-          submodules: recursive
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '20'
-      - name: Build frontend
-        run: |
-          npm install
-          npm run build
+      - <<: *frontend-build-steps
       - uses: actions/setup-python@v5
         with:
           python-version: 3.x
@@ -173,16 +159,7 @@ jobs:
           - runner: macos-14
             target: aarch64
     steps:
-      - uses: actions/checkout@v4
-        with:
-          submodules: recursive
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '20'
-      - name: Build frontend
-        run: |
-          npm install
-          npm run build
+      - <<: *frontend-build-steps
       - uses: actions/setup-python@v5
         with:
           python-version: 3.x
@@ -207,16 +184,7 @@ jobs:
   sdist:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-        with:
-          submodules: recursive
-      - uses: actions/setup-node@v3
-        with:
-          node-version: '20'
-      - name: Build frontend
-        run: |
-          npm install
-          npm run build
+      - <<: *frontend-build-steps
       - name: Build sdist
         uses: PyO3/maturin-action@v1
         with:
