@@ -38,6 +38,8 @@ jobs:
             target: ppc64le
     steps:
       - uses: actions/checkout@v4
+        with:
+          submodules: recursive
       - uses: actions/setup-node@v3
         with:
           node-version: '20'
@@ -83,6 +85,8 @@ jobs:
             target: armv7
     steps:
       - uses: actions/checkout@v4
+        with:
+          submodules: recursive
       - uses: actions/setup-node@v3
         with:
           node-version: '20'
@@ -124,6 +128,8 @@ jobs:
             target: x86
     steps:
       - uses: actions/checkout@v4
+        with:
+          submodules: recursive
       - uses: actions/setup-node@v3
         with:
           node-version: '20'
@@ -168,6 +174,8 @@ jobs:
             target: aarch64
     steps:
       - uses: actions/checkout@v4
+        with:
+          submodules: recursive
       - uses: actions/setup-node@v3
         with:
           node-version: '20'
@@ -200,6 +208,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          submodules: recursive
       - uses: actions/setup-node@v3
         with:
           node-version: '20'
@@ -244,4 +254,3 @@ jobs:
         with:
           command: upload
           args: --non-interactive --skip-existing wheels-*/*
-
