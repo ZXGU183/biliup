@@ -1,36 +1,42 @@
-## This workflow will upload a Python Package using Twine when a release is created
-## For more information see: https://help.github.com/en/actions/language-and-framework-guides/using-python-with-github-actions#publishing-to-package-registries
-#
-#name: Upload Python Package
-#
-#on:
-#  release:
-#    types: [created]
-#jobs:
-#  deploy:
-#
-#    runs-on: ubuntu-latest
-#
-#    steps:
-#    - uses: actions/checkout@v2
-#    - name: Set up Python
-#      uses: actions/setup-python@v2
-#      with:
-#        python-version: '3.x'
-#    - uses: actions/checkout@v3
-#    - uses: actions/setup-node@v3
-#      with:
-#        node-version: '20'
-#    - name: Install dependencies
-#      run: |
-#        python -m pip install --upgrade pip
-#        pip install setuptools wheel twine build
-#        npm install
-#    - name: Build and publish
-#      env:
-#        TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
-#        TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
-#      run: |
-#        npm run build
-#        python -m build
-#        twine upload dist/*
+name: Build WSL Wheel
+
+on:
+  workflow_dispatch: # 允许你从 GitHub UI 手动触发此工作流
+
+jobs:
+  build-wsl-wheel:
+    name: Build wheel for Ubuntu (amd64, Python 3.10)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          submodules: true # 确保拉取你的 submodule
+
+      - name: Setup Node.js for frontend build
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+
+      - name: Build frontend assets
+        run: |
+          npm install
+          npm run build
+
+      - name: Set up Python 3.x
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Build manylinux wheel
+        uses: PyO3/maturin-action@v1
+        with:
+          command: build
+          args: --release --out dist --target x86_64-unknown-linux-gnu
+
+      - name: Upload wheel as artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: wsl-wheel-amd64
+          path: dist/*.whl

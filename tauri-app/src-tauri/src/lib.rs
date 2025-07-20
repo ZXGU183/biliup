@@ -96,7 +96,7 @@ fn spawn_and_monitor_sidecar(app_handle: tauri::AppHandle) -> Result<(), String>
 
 // Define a command to shutdown sidecar process
 #[tauri::command]
-fn shutdown_sidecar(app_handle: &tauri::AppHandle) -> Result<String, String> {
+fn shutdown_sidecar(app_handle: tauri::AppHandle) -> Result<String, String> {
     println!("[tauri] Received command to shutdown sidecar.");
     // Access the sidecar process state
     if let Some(state) = app_handle.try_state::<Arc<Mutex<Option<CommandChild>>>>() {
@@ -192,10 +192,10 @@ pub fn run() {
         .expect("error while running tauri application")
         .run(|app_handle, event| match event {
             // Ensure the Python sidecar is killed when the app is closed
-            RunEvent::ExitRequested { .. } => {
-                shutdown_sidecar(app_handle).expect("Failed to shutdown sidecar");
-                println!("[tauri] Sidecar closed.");
-            }
+            RunEvent::ExitRequested { api, .. } => {
+                shutdown_sidecar(app_handle.clone()).expect("Failed to shutdown sidecar");
+                api.prevent_exit(); // 如果有异步操作，可以先阻止退出
+            },
             _ => {}
         });
 }
