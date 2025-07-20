@@ -45,8 +45,7 @@ package-lock.json
 tauri-app\package-lock.json
 qrcode.png
 *.log
-*.d.ts
-/*.d.ts
+next-env.d.ts
 /*.ts
 !tauri-app\vite.config.ts
 /biliup/stream-gears/
