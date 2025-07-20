@@ -104,8 +104,8 @@ fn shutdown_sidecar(app_handle: &tauri::AppHandle) -> Result<String, String> {
             .lock()
             .map_err(|_| "[tauri] Failed to acquire lock on sidecar process.")?;
         let shell = app_handle.shell();
-        let kill_command;
-        if let Some(mut process) = child_process.take() {
+        let kill_command; // This will be assigned inside the if block
+        if let Some(process) = child_process.take() {
             let pid = process.pid();
             println!("[tauri] Killing sidecar. Pid: {}", pid);
             #[cfg(target_os = "windows")]
@@ -187,7 +187,7 @@ pub fn run() {
 
             Ok(())
         })
-        .invoke_handler(tauri::generate_handler![greet])
+        .invoke_handler(tauri::generate_handler![greet, start_sidecar, shutdown_sidecar])
         .build(tauri::generate_context!())
         .expect("error while running tauri application")
         .run(|app_handle, event| match event {
