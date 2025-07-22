@@ -1,18 +1,967 @@
+### [>>Wiki<<](https://github.com/ZXGU183/biliup/wiki) —— [>>Readme<<](https://github.com/ZXGU183/biliup?tab=readme-ov-file)
+
 # 更新日志
 
 ## 标签含义
 - 💡新添加的功能
 - 🔧已修复的问题
-- ⚠️需要手动操作的更新信息
-# 更新日志
+- ⚠️需要注意的更新信息
 
-## 0.4.34
-- 更新时间：2024.01.27
-- 新增随机UA功能以及统一使用来解决部分平台请求API/弹幕录制风控问题[@Kataick](https://github.com/Kataick)
-- 优化webui处理时间的函数[@Kataick](https://github.com/Kataick)
-- 解决文件上传乱序的问题 [@storyxc](https://github.com/storyxc)
-- 解决从旧版Config中读取postprocessor指令并写入数据库的格式错误，导致postprocessor无法执行的问题 [@boxie123](https://github.com/boxie123)
+## 1.0.0.a0
 
+- 💡feat: 新增上传重试次数限制和上传结果webhook通知
+- 💡chore(rs): 同步 biliup-rs 组件更新
+    - 💡feat(proxy): 添加proxy与用户绑定机制，添加proxy有效性检测。来自 [biliup-rs#189](https://github.com/biliup/biliup-rs/pull/189)
+    - 🔧fix(stream-gears): [修复下载视频proxy不传递报错](https://github.com/biliup/biliup-rs/commit/dd791cecd6427ff1a5674e053635b82c82e35e0b)
+- 💡chore: 批量检测支持发送上传事件，来自 [biliup#1246](https://github.com/biliup/biliup/pull/1246)
+
+## 0.4.101.0a
+
+- 🔧fix(Upload): bili_web 上传插件适配 biliup-rs 生成的 cookie file，stream-gears 上传接口默认修改为 app by [xxxxuanran](https://github.com/biliup/biliup/pull/1312) in [#1347](https://github.com/biliup/biliup/pull/1347)
+- 🔧修复B站弹幕问题 by [unknown-o](https://github.com/unknown-o) in [#1342](https://github.com/biliup/biliup/pull/1342)
+
+## 0.4.100.b3
+
+- 🔧fix(Docker): 全局声明C.UTF-8字符编码以解决 [issue#1332](https://github.com/biliup/biliup/issues/1332) 提及的中文等字符乱码问题
+
+[>在 Github 查看此版本](https://github.com/ZXGU183/biliup/releases/tag/v0.4.100.b3)
+
+## 0.4.100.3a
+
+- 💡feat: 抖音弹幕录制：添加用户名、id、礼物弹幕的录制。来自[biliup#1321](https://github.com/biliup/biliup/pull/1321)
+
+[>在 Github 查看此版本](https://github.com/ZXGU183/biliup/releases/tag/v0.4.100.3a)
+
+## 0.4.100.1
+
+- 🔧[fix](https://github.com/biliup/biliup/pull/1325): 回滚文件名编解码返回逻辑以修复直接出现 unicode 的问题
+
+- 🔧fix(Danmaku.bilibili): 适配B站弹幕连接风控策略，来自[biliup#1312](https://github.com/biliup/biliup/pull/1312)
+
+- 🔧fix(sync-downloader.title): 对 sync-downloader 优先使用配置的标题格式，来自[biliup#1315](https://github.com/biliup/biliup/pull/1315)
+
+- _💡新增文件包括Windows下的FFmpeg变量批处理和配置模板、推荐的目录模板链式处理流部分示例，使用说明见[Wiki](https://github.com/ZXGU183/biliup/wiki)_
+
+[>在 Github 查看此版本](https://github.com/ZXGU183/biliup/releases/tag/v0.4.100.1)
+
+#### v0.4.100 - 2025-06-11
+
+What's Changed
+
+- 💡(Youtube): 拆分 YoutubeLive，添加 ytarchive 支持 by @xxxxuanran in https://github.com/biliup/biliup/pull/1307
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.99...v0.4.100
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.100)
+
+#### v0.4.99 - 2025-06-10
+
+What's Changed
+
+* 可能修复了边录边传稿件标题为直播间标题和简介未格式化的情况 by @ransxd in https://github.com/biliup/biliup/pull/1297
+
+- 🔧(Plugins.Huya): 修复当标题存在转义字符时正则匹配失败的问题 by @Kataick in https://github.com/biliup/biliup/pull/1301
+
+- 🔧(Danmaku.bilibili): 修复B站弹幕连接异常 by @DetectiveLemon in https://github.com/biliup/biliup/pull/1311
+
+New Contributors
+
+* @ransxd made their first contribution in https://github.com/biliup/biliup/pull/1297
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.98...v0.4.99
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.99)
+
+### May (2025)
+
+#### v0.4.98 - 2025-05-12
+
+What's Changed
+
+- 🔧(Plugins.Huya): Update HuYaUA by @xxxxuanran in https://github.com/biliup/biliup/pull/1291
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.97...v0.4.98
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.98)
+
+#### v0.4.97 - 2025-05-06
+
+What's Changed
+
+- 🔧: 修复播完自动上传时，仅自己可见状态失效 by @gweesin in https://github.com/biliup/biliup/pull/1276
+
+- 💡: 适配TwitCasting,TwitCasting添加Cookie,TwitCasting添加画质选择 by @CoolZxp in https://github.com/biliup/biliup/pull/1282
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.96...v0.4.97
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.97)
+
+### April (2025)
+
+#### v0.4.96 - 2025-04-29
+
+What's Changed
+
+- 💡: 移动端响应式增强 by @gweesin in https://github.com/biliup/biliup/pull/1266
+
+- 🔧(huya): update ua ts calculation and mobile api key error by @xxxxuanran in https://github.com/biliup/biliup/pull/1271
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.95...v0.4.96
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.96)
+
+#### v0.4.95 - 2025-04-27
+
+What's Changed
+
+* docs: 修复开发环境缺失的步骤 by @gweesin in https://github.com/biliup/biliup/pull/1262
+
+* chore(Dockerfile): 更新Dockerfile配置 by @SimonGino in https://github.com/biliup/biliup/pull/1260
+
+- 💡: 支持仅自己可见开关 by @gweesin in https://github.com/biliup/biliup/pull/1261
+
+- 🔧: ncp and sass should not production dependencies by @gweesin in https://github.com/biliup/biliup/pull/1265
+
+- 💡: 抖音真原画 by @xxxxuanran in https://github.com/biliup/biliup/pull/1267
+
+New Contributors
+
+* @gweesin made their first contribution in https://github.com/biliup/biliup/pull/1262
+
+* @SimonGino made their first contribution in https://github.com/biliup/biliup/pull/1260
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.94...v0.4.95
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.95)
+
+#### v0.4.94 - 2025-04-24
+
+What's Changed
+
+* 增加+ by @TajangSec in https://github.com/biliup/biliup/pull/1249
+
+- 💡(douyu): 构建斗鱼直播 tct & hs 流链接 by @xxxxuanran in https://github.com/biliup/biliup/pull/1256
+
+New Contributors
+
+* @TajangSec made their first contribution in https://github.com/biliup/biliup/pull/1249
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.93...v0.4.94
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.94)
+
+#### v0.4.93 - 2025-04-14
+
+What's Changed
+
+* refactor: plugins.Huya by @xxxxuanran in https://github.com/biliup/biliup/pull/1238
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.92...v0.4.93
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.93)
+
+#### v0.4.92 - 2025-04-05
+
+What's Changed
+
+- 🔧 修复一些边录边传下载器的bug by @XiaoMiku01 in https://github.com/biliup/biliup/pull/1220
+
+* mod: 修改原始弹幕录制逻辑 by @unknown-o in https://github.com/biliup/biliup/pull/1217
+
+- 💡: Implement WBI signing mechanism for Bilibili API requests by @xxxxuanran in https://github.com/biliup/biliup/pull/1223
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.91...v0.4.92
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.92)
+
+#### v0.4.91 - 2025-04-03
+
+What's Changed
+
+* webui: 录制时间范围改用TimePicker，选择时间 by @ruinmi in https://github.com/biliup/biliup/pull/1211
+
+- 🔧: stream-gears上传投稿参数错误 by @hxzll in https://github.com/biliup/biliup/pull/1221
+
+- 🔧: 修复streamlink下载器header参数 by @dreammu in https://github.com/biliup/biliup/pull/1218
+
+New Contributors
+
+* @hxzll made their first contribution in https://github.com/biliup/biliup/pull/1221
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.90...v0.4.91
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.91)
+
+#### v0.4.90 - 2025-04-01
+
+What's Changed
+
+* Add 添加实时日志展示 by @XiaoMiku01 in https://github.com/biliup/biliup/pull/1210
+
+* Bump version to 0.4.90 by @xxxxuanran in https://github.com/biliup/biliup/pull/1215
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.89...v0.4.90
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.90)
+
+### March (2025)
+
+#### v0.4.89 - 2025-03-31
+
+What's Changed
+
+- 🔧: 移除streamlink的弃用参数 by @dreammu in https://github.com/biliup/biliup/pull/1201
+
+- 🔧 修复一些问题 by @XiaoMiku01 in https://github.com/biliup/biliup/pull/1207
+
+* Update README.md by @viondw in https://github.com/biliup/biliup/pull/1205
+
+- 💡: 支持B站完整弹幕录制 by @unknown-o in https://github.com/biliup/biliup/pull/1186
+
+- 💡ure: 关键词不录播 by @ruinmi in https://github.com/biliup/biliup/pull/1200
+
+- 🔧: 回归下载器选择streamlink时的正常行为 by @dreammu in https://github.com/biliup/biliup/pull/1202
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.88...v0.4.89
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.89)
+
+#### v0.4.88 - 2025-03-23
+
+What's Changed
+
+- 🔧(Huya): 星秀区下载错误 by @xxxxuanran in https://github.com/biliup/biliup/pull/1197
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.87...v0.4.88
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.88)
+
+#### v0.4.87 - 2025-03-12
+
+What's Changed
+
+* Update dependencies and Python version requirements by @xxxxuanran in https://github.com/biliup/biliup/pull/1185
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.86...v0.4.87
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.87)
+
+#### v0.4.86 - 2025-03-12
+
+What's Changed
+
+* Update pyproject.toml by @ZRdRy in https://github.com/biliup/biliup/pull/1183
+
+New Contributors
+
+* @ZRdRy made their first contribution in https://github.com/biliup/biliup/pull/1183
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.85...v0.4.86
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.86)
+
+#### v0.4.85 - 2025-03-11
+
+What's Changed
+
+- 🔧:  解决边录边传中默认值错误导致的异常 by @XiaoMiku01 in https://github.com/biliup/biliup/pull/1159
+
+* B站弹幕部分的参数兼容DanmakuFactory可识别用户名 by @rslywhj in https://github.com/biliup/biliup/pull/1172
+
+- 🔧非详细弹幕content丢失 by @rslywhj in https://github.com/biliup/biliup/pull/1175
+
+- 💡: Use system certificate store by default by @xxxxuanran in https://github.com/biliup/biliup/pull/1176
+
+* Dev 修复边录边传的一些bug by @XiaoMiku01 in https://github.com/biliup/biliup/pull/1167
+
+* logo readme up by @viondw in https://github.com/biliup/biliup/pull/1164
+
+New Contributors
+
+* @rslywhj made their first contribution in https://github.com/biliup/biliup/pull/1172
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.84...v0.4.85
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.85)
+
+### February (2025)
+
+#### v0.4.84 - 2025-02-08
+
+What's Changed
+
+* Update layout.tsx by @q8018414 in https://github.com/biliup/biliup/pull/1156
+
+* 相似备注检查跳过自身；格式化用户模板提交之数据 by @xxxxuanran in https://github.com/biliup/biliup/pull/1157
+
+* Bumping version by @ForgQi in https://github.com/biliup/biliup/pull/1158
+
+New Contributors
+
+* @q8018414 made their first contribution in https://github.com/biliup/biliup/pull/1156
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.83...v0.4.84
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.84)
+
+#### v0.4.83 - 2025-02-06
+
+What's Changed
+
+* README changelog Update by @viondw in https://github.com/biliup/biliup/pull/1153
+
+- 💡: Add override configuration support for streamers by @xxxxuanran in https://github.com/biliup/biliup/pull/1151
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.82...v0.4.83
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.83)
+
+#### v0.4.82 - 2025-02-05
+
+What's Changed
+
+* perf: 优化B站弹幕录制 by @unknown-o in https://github.com/biliup/biliup/pull/1126
+
+* Style(webui): 执行前端代码格式化 by @alpzmj9 in https://github.com/biliup/biliup/pull/1141
+
+* Dev 适配 biliup/biliup-rs186  测试边录边上传功能 by @XiaoMiku01 in https://github.com/biliup/biliup/pull/1140
+
+- 💡: Add Kilakila streaming platform support by @xxxxuanran in https://github.com/biliup/biliup/pull/1148
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.81...v0.4.82
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.82)
+
+### January (2025)
+
+#### v0.4.81 - 2025-01-04
+
+What's Changed
+
+- 💡: B站弹幕录制优化 by @unknown-o in https://github.com/biliup/biliup/pull/1120
+
+New Contributors
+
+* @unknown-o made their first contribution in https://github.com/biliup/biliup/pull/1120
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.80...v0.4.81
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.81)
+
+## 2024 年
+
+### December (2024)
+
+#### v0.4.80 - 2024-12-31
+
+What's Changed
+
+- 🔧: dtime by @xxxxuanran in https://github.com/biliup/biliup/pull/1121
+
+修复延迟发布（来自赞助者的要求）。 resolves https://github.com/biliup/biliup/issues/1106
+
+更换播放器以支持 mp4 封装和 HEVC on FLV。 fixes https://github.com/biliup/biliup/issues/1117
+
+fixes https://github.com/biliup/biliup/issues/1116
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.79...v0.4.80
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.80)
+
+#### v0.4.79 - 2024-12-19
+
+What's Changed
+
+* web ui 功能更改；增加录制时间范围功能 by @ruinmi in https://github.com/biliup/biliup/pull/1017
+
+* style: refactor mobile client header style by @see-more in https://github.com/biliup/biliup/pull/1064
+
+* Update README.md Docker by @viondw in https://github.com/biliup/biliup/pull/1080
+
+- 🔧(huya): skip query param generation for "xingxiu" streamers by @xxxxuanran in https://github.com/biliup/biliup/pull/1099
+
+- 💡(webui): 深色模式添加自动跟随系统，添加格式化配置文件。 by @alpzmj9 in https://github.com/biliup/biliup/pull/1109
+
+- 💡: enhance dashboard and plugin by @xxxxuanran in https://github.com/biliup/biliup/pull/1114
+
+New Contributors
+
+* @ruinmi made their first contribution in https://github.com/biliup/biliup/pull/1017
+
+* @see-more made their first contribution in https://github.com/biliup/biliup/pull/1064
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.78...v0.4.79
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.79)
+
+### September (2024)
+
+#### v0.4.78 - 2024-09-01
+
+What's Changed
+
+- 🔧(Douyin): 修复 PCWeb 直播页电台类型直播录制 by @xxxxuanran in https://github.com/biliup/biliup/pull/1044
+
+- 🔧(Upload): 重传时未能从数据库获取直播信息 by @xxxxuanran in https://github.com/biliup/biliup/pull/1045
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.77...v0.4.78
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.78)
+
+### August (2024)
+
+#### v0.4.77 - 2024-08-17
+
+What's Changed
+
+- 🔧[build]: 修复直接提交 commit时，ci 构建失败的问题 by @XiaoMiku01 in https://github.com/biliup/biliup/pull/1037
+
+- 🔧: 虎牙弹幕丢失 (949) by @CoolZxp in https://github.com/biliup/biliup/pull/1035
+
+- 🔧(Huya): platform_id error by @xxxxuanran in https://github.com/biliup/biliup/pull/1039
+
+New Contributors
+
+* @XiaoMiku01 made their first contribution in https://github.com/biliup/biliup/pull/1037
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.76...v0.4.77
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.77)
+
+#### v0.4.76 - 2024-08-12
+
+What's Changed
+
+- 🔧修复v0.4.75抖音默认开启录制弹幕的问题 by @hfdem in https://github.com/biliup/biliup/pull/1022
+
+- 🔧(webui): 修复直播历史与历史记录排序问题 by @Kataick in https://github.com/biliup/biliup/pull/1025
+
+* flx(build): 修复1025 npm会编译失败的问题 by @Kataick in https://github.com/biliup/biliup/pull/1031
+
+New Contributors
+
+* @hfdem made their first contribution in https://github.com/biliup/biliup/pull/1022
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.75...v0.4.76
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.76)
+
+#### v0.4.75 - 2024-08-05
+
+What's Changed
+
+* 支持抖音短链录制弹幕 by @xxxxuanran in https://github.com/biliup/biliup/pull/1015
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.74...v0.4.75
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.75)
+
+### July (2024)
+
+#### v0.4.74 - 2024-07-31
+
+What's Changed
+
+- 🔧修复变量未定义 by @xxxxuanran in https://github.com/biliup/biliup/pull/1012
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.73...v0.4.74
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.74)
+
+#### v0.4.73 - 2024-07-31
+
+What's Changed
+
+* 适配抖音短链、电台、多屏直播 by @xxxxuanran in https://github.com/biliup/biliup/pull/1010
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.72...v0.4.73
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.73)
+
+#### v0.4.72 - 2024-07-17
+
+What's Changed
+
+* update Readme by @xxxxuanran in https://github.com/biliup/biliup/pull/992
+
+- 🔧: 在没有配置最大码率时跳过码率选择 by @xxxxuanran in https://github.com/biliup/biliup/pull/993
+
+- 💡: Add cache during runtime by @xxxxuanran in https://github.com/biliup/biliup/pull/995
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.71...v0.4.72
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.72)
+
+#### v0.4.71 - 2024-07-10
+
+What's Changed
+
+* Add by @viondw in https://github.com/biliup/biliup/pull/976
+
+- 💡: danmaku xml 兼容b站格式 by @BugKun in https://github.com/biliup/biliup/pull/985
+
+* 减少douyu通过发送请求获取房间号次数 by @Kataick in https://github.com/biliup/biliup/pull/950
+
+- 💡(Huya): use the api to get live streams by @xxxxuanran in https://github.com/biliup/biliup/pull/986
+
+New Contributors
+
+* @BugKun made their first contribution in https://github.com/biliup/biliup/pull/985
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.70...v0.4.71
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.71)
+
+### June (2024)
+
+#### v0.4.70 - 2024-06-23
+
+What's Changed
+
+- 🔧: first run error by @xxxxuanran in https://github.com/biliup/biliup/pull/968
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.69...v0.4.70
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.70)
+
+#### v0.4.69 - 2024-06-22
+
+What's Changed
+
+- 💡(download): Support hls for huya, douyin by @xxxxuanran in https://github.com/biliup/biliup/pull/958
+
+- 🔧: val name err by @xxxxuanran in https://github.com/biliup/biliup/pull/962
+
+* Minimal import by @xxxxuanran in https://github.com/biliup/biliup/pull/963
+
+- 🔧(douyin-danmaku): include signature parameter by @xxxxuanran in https://github.com/biliup/biliup/pull/967
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.68...v0.4.69
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.69)
+
+#### v0.4.68 - 2024-06-02
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.67...v0.4.68
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.68)
+
+### May (2024)
+
+#### v0.4.67 - 2024-05-29
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.66...v0.4.67
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.67)
+
+#### v0.4.66 - 2024-05-28
+
+What's Changed
+
+- 🔧(Blive): 原画优先 by @xxxxuanran in https://github.com/biliup/biliup/pull/946
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.65...v0.4.66
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.66)
+
+#### v0.4.65 - 2024-05-26
+
+What's Changed
+
+* 限制 Twitch 同时查询数量 by @xxxxuanran in https://github.com/biliup/biliup/pull/941
+
+- 💡(Douyu): 拒绝互动游戏 by @xxxxuanran in https://github.com/biliup/biliup/pull/943
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.64...v0.4.65
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.65)
+
+#### v0.4.64 - 2024-05-20
+
+What's Changed
+
+* 更新 CC 平台 by @xxxxuanran in https://github.com/biliup/biliup/pull/936
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.63...v0.4.64
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.64)
+
+#### v0.4.63 - 2024-05-19
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.62...v0.4.63
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.63)
+
+#### v0.4.62 - 2024-05-19
+
+What's Changed
+
+* Update CHANGELOG.md by @viondw in https://github.com/biliup/biliup/pull/932
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.61...v0.4.62
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.62)
+
+#### v0.4.61 - 2024-05-19
+
+What's Changed
+
+* 修正不存在配置时出现的错误引用 by @xxxxuanran in https://github.com/biliup/biliup/pull/933
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.60...v0.4.61
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.61)
+
+#### v0.4.60 - 2024-05-18
+
+What's Changed
+
+* Update README.md by @viondw in https://github.com/biliup/biliup/pull/930
+
+* 行为调整 by @xxxxuanran in https://github.com/biliup/biliup/pull/925
+
+* 适配白色背景 by @viondw in https://github.com/biliup/biliup/pull/931
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.59...v0.4.60
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.60)
+
+#### v0.4.59 - 2024-05-13
+
+What's Changed
+
+* Update README.md by @ikun1993 in https://github.com/biliup/biliup/pull/926
+
+* 下载流程调整 by @CoolZxp in https://github.com/biliup/biliup/pull/927
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.58...v0.4.59
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.59)
+
+#### v0.4.58 - 2024-05-11
+
+What's Changed
+
+* 使上传转载来源生效 by @CoolZxp in https://github.com/biliup/biliup/pull/910
+
+* 909 补充 by @xxxxuanran in https://github.com/biliup/biliup/pull/916
+
+* 下载流程优化 by @CoolZxp in https://github.com/biliup/biliup/pull/917
+
+* 避免streamlink进程残留 by @CoolZxp in https://github.com/biliup/biliup/pull/918
+
+* 精简 Docker 镜像 by @xxxxuanran in https://github.com/biliup/biliup/pull/921
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.57...v0.4.58
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.58)
+
+### April (2024)
+
+#### v0.4.57 - 2024-04-30
+
+What's Changed
+
+* 下载流程调整 by @CoolZxp in https://github.com/biliup/biliup/pull/906
+
+* Patch 20240501 by @xxxxuanran in https://github.com/biliup/biliup/pull/909
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.56...v0.4.57
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.57)
+
+#### v0.4.56 - 2024-04-27
+
+What's Changed
+
+- 🔧修复按大小分段 by @CoolZxp in https://github.com/biliup/biliup/pull/904
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.55...v0.4.56
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.56)
+
+#### v0.4.55 - 2024-04-27
+
+What's Changed
+
+* Update README.md by @viondw in https://github.com/biliup/biliup/pull/899
+
+* Update CHANGELOG.md by @viondw in https://github.com/biliup/biliup/pull/900
+
+* 防止分段后处理超出预期的执行次数 by @Kataick in https://github.com/biliup/biliup/pull/895
+
+* 下载功能调整 by @CoolZxp in https://github.com/biliup/biliup/pull/902
+
+* Webui 优化 by @xxxxuanran in https://github.com/biliup/biliup/pull/903
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.54...v0.4.55
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.55)
+
+#### v0.4.54 - 2024-04-24
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.53...v0.4.54
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.54)
+
+#### v0.4.53 - 2024-04-23
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.52...v0.4.53
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.53)
+
+#### v0.4.52 - 2024-04-23
+
+What's Changed
+
+* Update CHANGELOG.md by @viondw in https://github.com/biliup/biliup/pull/880
+
+* 缓解 HTTP 漏洞 by @xxxxuanran in https://github.com/biliup/biliup/pull/877
+
+* Update CHANGELOG.md by @viondw in https://github.com/biliup/biliup/pull/882
+
+* Update bug-report.yaml by @xxxxuanran in https://github.com/biliup/biliup/pull/885
+
+* remove some shields by @Kataick in https://github.com/biliup/biliup/pull/886
+
+* 小小美化一下 by @viondw in https://github.com/biliup/biliup/pull/888
+
+* Update cookie.tsx by @ikun1993 in https://github.com/biliup/biliup/pull/889
+
+* 优化显示 by @viondw in https://github.com/biliup/biliup/pull/890
+
+* 优化排版/链接 by @viondw in https://github.com/biliup/biliup/pull/891
+
+New Contributors
+
+* @ikun1993 made their first contribution in https://github.com/biliup/biliup/pull/889
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.51...v0.4.52
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.52)
+
+#### v0.4.51 - 2024-04-17
+
+What's Changed
+
+* 新增分段后处理功能(返回当前分段的视频文件 只支持run指令) by @Kataick in https://github.com/biliup/biliup/pull/868
+
+- 🔧修复WebUI 405 Method Not Allowed by @CoolZxp in https://github.com/biliup/biliup/pull/878
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.50...v0.4.51
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.51)
+
+#### v0.4.50 - 2024-04-16
+
+What's Changed
+
+- 🔧修复排序错误 by @xxxxuanran in https://github.com/biliup/biliup/pull/865
+
+- 🔧修复Youtube在下载完成前的意外错误 by @CoolZxp in https://github.com/biliup/biliup/pull/869
+
+* 适配FlexTv by @CoolZxp in https://github.com/biliup/biliup/pull/870
+
+* 避免虎牙在选取码率时发生错误后依旧继续执行 by @CoolZxp in https://github.com/biliup/biliup/pull/871
+
+* 适配 Twitcasting.TV by @xxxxuanran in https://github.com/biliup/biliup/pull/874
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.49...v0.4.50
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.50)
+
+#### v0.4.49 - 2024-04-10
+
+What's Changed
+
+- 🔧修复录播管理页卡片重叠问题 by @alpzmj9 in https://github.com/biliup/biliup/pull/851
+
+* 录播管理页面卡片样式优化 by @alpzmj9 in https://github.com/biliup/biliup/pull/861
+
+* 添加捐赠信息 by @viondw in https://github.com/biliup/biliup/pull/863
+
+* 调整功能 by @xxxxuanran in https://github.com/biliup/biliup/pull/860
+
+- 🔧：日志格式以及丢失问题 by @alpzmj9 in https://github.com/biliup/biliup/pull/864
+
+New Contributors
+
+* @viondw made their first contribution in https://github.com/biliup/biliup/pull/863
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.48...v0.4.49
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.49)
+
+#### v0.4.48 - 2024-04-07
+
+What's Changed
+
+* 添加 kuaishou_cookie 格式说明，尝试回避快手风控 by @xxxxuanran in https://github.com/biliup/biliup/pull/855
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.47...v0.4.48
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.48)
+
+### March (2024)
+
+#### v0.4.47 - 2024-03-27
+
+What's Changed
+
+* Incorrect override behavior by @xxxxuanran in https://github.com/biliup/biliup/pull/850
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.46...v0.4.47
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.47)
+
+#### v0.4.46 - 2024-03-25
+
+What's Changed
+
+- 🔧修复Bililive登录校验失败时输出异常的问题 by @Kataick in https://github.com/biliup/biliup/pull/847
+
+* Add more log by @xxxxuanran in https://github.com/biliup/biliup/pull/848
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.45...v0.4.46
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.46)
+
+#### v0.4.45 - 2024-03-22
+
+What's Changed
+
+* [Fix] Style errors and missing Title by @xxxxuanran in https://github.com/biliup/biliup/pull/841
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.44...v0.4.45
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.45)
+
+#### v0.4.44 - 2024-03-17
+
+What's Changed
+
+- 🔧 huya by @xxxxuanran in https://github.com/biliup/biliup/pull/839
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.43...v0.4.44
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.44)
+
+#### v0.4.43 - 2024-03-17
+
+What's Changed
+
+* 一些更新 by @xxxxuanran in https://github.com/biliup/biliup/pull/837
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.42...v0.4.43
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.43)
+
+#### v0.4.42 - 2024-03-11
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.41...v0.4.42
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.42)
+
+#### v0.4.41 - 2024-03-07
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.40...v0.4.41
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.41)
+
+#### v0.4.40 - 2024-03-05
+
+What's Changed
+
+- 🔧: 超出连接池上限无法释放、webui中cookie文件显示错误 by @boxie123 in https://github.com/biliup/biliup/pull/834
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.39...v0.4.40
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.40)
+
+#### v0.4.39 - 2024-03-02
+
+What's Changed
+
+- 🔧修复少量bug by @boxie123 in https://github.com/biliup/biliup/pull/832
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.38...v0.4.39
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.39)
+
+### February (2024)
+
+#### v0.4.38 - 2024-02-29
+
+What's Changed
+
+* WebUI交互优化 by @alpzmj9 in https://github.com/biliup/biliup/pull/826
+
+- 🔧: datetime被过滤、新建空间配置无法保存 by @boxie123 in https://github.com/biliup/biliup/pull/827
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.37...v0.4.38
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.38)
+
+#### v0.4.37 - 2024-02-28
+
+What's Changed
+
+* 紧急修复`URL build`报错 by @boxie123 in https://github.com/biliup/biliup/pull/823
+
+* UI代码组件化，修复部分选项BUG，文字表述优化，新增日志配置项。 by @alpzmj9 in https://github.com/biliup/biliup/pull/822
+
+* Refactoring database using sqlalchemy by @boxie123 in https://github.com/biliup/biliup/pull/818
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.36...v0.4.37
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.37)
+
+#### v0.4.36 - 2024-02-27
+
+What's Changed
+
+- 🔧修复码率类型错误、部分选项默认开启、投稿标签添加限制 by @boxie123 in https://github.com/biliup/biliup/pull/815
+
+* 保证生成的视频文件后缀为小写 by @Kataick in https://github.com/biliup/biliup/pull/813
+
+* 增加找不到 cookies 时文件时未知提示 by @buyfakett in https://github.com/biliup/biliup/pull/816
+
+- 🔧: refined the webui. by @alpzmj9 in https://github.com/biliup/biliup/pull/817
+
+* 添加--no-access-log参数、修改webui启动提示 by @boxie123 in https://github.com/biliup/biliup/pull/821
+
+New Contributors
+
+* @buyfakett made their first contribution in https://github.com/biliup/biliup/pull/816
+
+* @alpzmj9 made their first contribution in https://github.com/biliup/biliup/pull/817
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.35...v0.4.36
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.36)
+
+#### v0.4.35 - 2024-02-21
+
+What's Changed
+
+* 添加 webui 缺失的配置项，修复账号信息显示问题 by @boxie123 in https://github.com/biliup/biliup/pull/792
+
+- 🔧: 上传插件和简介艾特无法取消选择、分段大小单位错误 by @boxie123 in https://github.com/biliup/biliup/pull/796
+
+- 🔧: Twitch录制报错 by @boxie123 in https://github.com/biliup/biliup/pull/800
+
+- 🔧修复webui的某些输入框类型问题 by @Kataick in https://github.com/biliup/biliup/pull/814
+
+**Full Changelog**: https://github.com/biliup/biliup/compare/v0.4.34...v0.4.35
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.35)
+### January (2024)
+
+#### v0.4.34 - 2024-01-27
+
+修复B站请求开播状况API352风控的问题
+
+[>在 Github 查看此版本](https://github.com/biliup/biliup/releases/tag/v0.4.34)
 
 ## 0.4.32-0.4.33
 ⚠️⚠️⚠️⚠️⚠️⚠️超大版本更新，在升级到此版本之前请认真阅读说明。
