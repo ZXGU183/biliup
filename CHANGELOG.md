@@ -9,7 +9,7 @@
 
 ## 1.0.0.a0
 
-- 💡feat: 新增上传重试次数限制和上传结果webhook通知
+- 💡feat: 新增上传重试次数限制和上传结果webhook通知，重新合并来自 [biliup#1355](https://github.com/biliup/biliup/pull/1355)
 - 💡chore(rs): 同步 biliup-rs 组件更新
     - 💡feat(proxy): 添加proxy与用户绑定机制，添加proxy有效性检测。来自 [biliup-rs#189](https://github.com/biliup/biliup-rs/pull/189)
     - 🔧fix(stream-gears): [修复下载视频proxy不传递报错](https://github.com/biliup/biliup-rs/commit/dd791cecd6427ff1a5674e053635b82c82e35e0b)
