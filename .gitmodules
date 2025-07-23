@@ -1,6 +1,3 @@
-[submodule "docs/themes/adidoks"]
-	path = docs/themes/adidoks
-	url = https://github.com/aaranxu/adidoks.git
 [submodule "crates"]
 	path = crates
 	url = https://github.com/ZXGU183/biliup-crates.git
