@@ -1,48 +1,91 @@
-.idea
-.vscode
-.cursor
-.gitattributes
+# =================================================================
+# Version Control Lock Files (版本控制锁文件)
+# =================================================================
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+uv.lock
+pdm.lock
+Cargo.lock
+tauri-app/src-tauri/Cargo.lock
+
+# =================================================================
+# Build & Compilation Artifacts (构建与编译产物)
+# =================================================================
+build/
+dist/
+target/
+out/
+*.egg-info/
+
+# =================================================================
+# Python Specific (Python 特定文件)
+# =================================================================
+__pycache__/
 *.pyc
+.venv/
+venv./
+.pdm-python
+_internal/
+
+# =================================================================
+# Node.js / Frontend Specific (Node.js / 前端生成文件)
+# =================================================================
+node_modules/
+.next/
+next-env.d.ts
+public/CHANGELOG.html
+
+# =================================================================
+# IDE & Editor Directories (IDE 与编辑器目录)
+# =================================================================
+.idea/
+.vscode/
+.cursor/
+
+# =================================================================
+# Project Specific Generated Files & Logs (项目特定生成文件与日志)
+# =================================================================
+# Logs and data files
+*.log
+ds_update.log*
+configlog.ini
+archive.txt
+cover/
+data/
+
+# Temporary or backup files
+*.back
+*.cookie
+bili.cookie.json
+config.*.*
+watch_process.pid
+
+# Media and download files
 *.flv
 *.mp4
 *.part
+*.ts
 *.webm
-backup
-venv./
-.venv/
-.run/
-test/
-pdm.lock
-.pdm-python
-config.*.*
-config.yaml
-!public/config.yaml
-/configlog.ini
-ds_update.log*
-*.cookie
+*.xml
 *.zip
 *.exe
-*.egg-info
-dist/
-build/
-cover/
-cache/
-
-*.back
-bili.cookie.json
-archive.txt
-/node_modules
-watch_process.pid
-biliup/**/public
-public/CHANGELOG.html
-*.xml
-package-lock.json
-qrcode.png
-*.log
-/*.ts
-/biliup/stream-gears/
-data/
-.next
-out
-downloads/
 biliup*.tar
+downloads/
+qrcode.png
+
+# Other generated directories
+.run/
+.sqlx/
+cache/
+backup/
+test/
+
+# =================================================================
+# Exceptions (例外规则 - 不要忽略这些文件)
+# =================================================================
+# Keep the example config file
+!config.yaml
+# Keep the vite config for tauri
+!tauri-app/vite.config.ts
+
