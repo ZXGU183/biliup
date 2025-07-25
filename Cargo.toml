@@ -3,7 +3,6 @@ members = [
     "crates/biliup",
     "crates/biliup-cli",
     "crates/stream-gears",
-    "tauri-app/src-tauri"
 ]
 resolver = "2"
 

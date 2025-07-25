@@ -26,8 +26,8 @@ pyz = PYZ(a.pure)
 exe = EXE(
     pyz,
     a.scripts,
-    [], # a.binaries 从这里移除
-    [], # a.datas 从这里移除
+    a.binaries,
+    a.datas,
     [],
     name='biliup',
     debug=False,
@@ -43,15 +43,4 @@ exe = EXE(
     codesign_identity=None,
     entitlements_file=None,
     icon=['public\\logo.png'],
-)
-
-# One-Folder Mode
-coll = COLLECT(
-    exe,
-    a.binaries,
-    a.datas,
-    strip=False,
-    upx=True,
-    upx_exclude=[],
-    name='bbup' # 这是最终生成的文件夹的名称
 )

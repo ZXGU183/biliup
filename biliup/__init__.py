@@ -1,10 +1,15 @@
 import logging
 import platform
 import sys
+import os
 from importlib.metadata import version
 
 __version__ = version("biliup")
 
+# Execute the following code block if running on Windows.
+if sys.platform == "win32":
+    # 设置 Windows Shell 配色
+    os.system('color 3F')
 
 LOG_CONF = {
     'version': 1,
