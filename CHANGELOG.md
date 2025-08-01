@@ -7,9 +7,19 @@
 - 🔧已修复的问题
 - ⚠️需要注意的更新信息
 
+## 1.0.2.a0
+
+- 💡feat(Huya): 支持 Huya Wup 协议以获取正确直播流，来自 [biliup#1385](https://github.com/biliup/biliup/pull/1385)
+- 🔧chore(Upload): 优化登录功能
+
+## 1.0.1.0a
+
+- 💡feat(Upload): 添加登录页面，实现完整的用户认证系统
+- 🔧fix(douyin): 修复抖音直播流获取问题
+
 ## 1.0.0.a0
 
-- 💡feat: 新增上传重试次数限制和上传结果webhook通知，重新合并来自 [biliup#1355](https://github.com/biliup/biliup/pull/1355)
+- 💡feat(Upload): 新增上传重试次数限制和上传结果webhook通知，重新合并来自 [biliup#1355](https://github.com/biliup/biliup/pull/1355)
 - 💡chore(rs): 同步 biliup-rs 组件更新
     - 💡feat(proxy): 添加proxy与用户绑定机制，添加proxy有效性检测。来自 [biliup-rs#189](https://github.com/biliup/biliup-rs/pull/189)
     - 🔧fix(stream-gears): [修复下载视频proxy不传递报错](https://github.com/biliup/biliup-rs/commit/dd791cecd6427ff1a5674e053635b82c82e35e0b)
@@ -17,7 +27,7 @@
 
 ## 0.4.101.0a
 
-- 🔧fix(Upload): bili_web 上传插件适配 biliup-rs 生成的 cookie file，stream-gears 上传接口默认修改为 app by [xxxxuanran](https://github.com/biliup/biliup/pull/1312) in [#1347](https://github.com/biliup/biliup/pull/1347)
+- 🔧fix(Upload): bili_web 上传插件适配 biliup-rs 生成的 cookie file，stream-gears 上传接口默认修改为 app
 - 🔧修复B站弹幕问题 by [unknown-o](https://github.com/unknown-o) in [#1342](https://github.com/biliup/biliup/pull/1342)
 
 ## 0.4.100.b3
@@ -38,7 +48,7 @@
 
 - 🔧fix(Danmaku.bilibili): 适配B站弹幕连接风控策略，来自[biliup#1312](https://github.com/biliup/biliup/pull/1312)
 
-- 🔧fix(sync-downloader.title): 对 sync-downloader 优先使用配置的标题格式，来自[biliup#1315](https://github.com/biliup/biliup/pull/1315)
+- 🔧fix([sync-downloader.title](https://github.com/ZXGU183/biliup/commit/8f4b55760059cb373526969bfa0a718f95cf473c)): 对 sync-downloader 优先使用配置的标题格式
 
 - _💡新增文件包括Windows下的FFmpeg变量批处理和配置模板、推荐的目录模板链式处理流部分示例，使用说明见[Wiki](https://github.com/ZXGU183/biliup/wiki)_
 
